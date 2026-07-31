@@ -98,13 +98,16 @@ export function Hero() {
               <HeroPortrait className="h-[var(--size-hero-photo-sm)] w-fit lg:h-full lg:w-full xl:-translate-x-[18%]" />
             </motion.div>
 
-            {/* §4.7 — card sits on the portrait's bottom-left corner, hanging
-                slightly past its edge (Armory pattern), not beside the text.
-                Hidden below lg under the §4.5 allowance; see note below. */}
-            {/* Overhang is kept to space-3: the photo column starts one gap
-                (space-5) past the text column, so a space-5 overhang would put
-                the card's edge exactly on the subtext's last character. */}
-            <div className="absolute bottom-7 -left-3 z-float hidden w-[min(320px,92%)] lg:block">
+            {/* §4.7 — card floats on the portrait's lower body (Armory pattern),
+                not beside the text.
+                Anchored as a fraction of the photo column rather than a fixed
+                offset from its left edge, so it tracks the torso: the silhouette
+                is narrow at collar height and its suit is near-onyx, so a
+                left-edge anchor put the card's left third over what reads as
+                empty background. 38%/right-0 lands its left edge on the visible
+                chest at both lg and xl, and sizes the card from the remaining
+                column width instead of a fixed px value. */}
+            <div className="absolute right-0 bottom-7 left-[38%] z-float hidden lg:block">
               <StatusCard />
             </div>
           </div>

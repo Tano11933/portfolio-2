@@ -16,6 +16,10 @@ Tema: **Engineered Metal Flow** — presisi ala instrumen/metalurgi, dipadukan d
 | `--color-platinum-muted` | `#C9C7C3` | Divider, teks sekunder di atas terang |
 | `--color-success` | `#4A7A5E` | Status "available for work" (dipakai sangat jarang) |
 
+**Aturan kontras per-surface (WCAG AA, ≥4.5:1 untuk teks kecil):**
+- Di atas Onyx → pakai `--color-steel-light` (`#7C93A3`) untuk teks/label aksen.
+- Di atas Platinum → pakai `--color-steel` (`#536878`), **bukan** `--color-steel-light` (cuma ~2.5:1 di situ, gagal AA). Ini kesalahan yang sudah pernah kejadian (label §4.8), dicatat di sini supaya tidak terulang di komponen lain yang pakai surface Platinum.
+
 **Gradient signature — "Metal Flow":**
 ```css
 --gradient-flow: linear-gradient(135deg, var(--color-steel) 0%, var(--color-steel-deep) 45%, var(--color-onyx) 100%);
@@ -104,12 +108,14 @@ Basis 4px, skala geometris ringan supaya konsisten di semua breakpoint:
 Signature moment baru pengganti hero polos: nama besar sebagai tipografi dominan, foto diri (duotone) menimpa sebagian huruf dan membentuk kolom visual besar di sisi kanan.
 
 - **Grid:** hero content jadi 2 kolom asimetris — `grid-template-columns: 1.3fr 1fr` (desktop). Kolom kiri: eyebrow, nama, headline pendukung, subteks, CTA. Kolom kanan: foto. Jangan kunci lebar kolom foto ke posisi pixel nav item tertentu (mis. "About") — biarkan proporsional lewat grid supaya tidak rapuh terhadap perubahan nav, tapi karena container sama dengan navbar, hasilnya akan tetap terlihat sejajar secara visual.
-- **Tinggi foto:** `height: 100%` mengikuti tinggi baris grid yang sama dengan kolom teks (dari atas nama sampai sejajar baris CTA) — otomatis menyesuaikan kalau panjang teks berubah, bukan angka tetap. `object-fit: cover`, `object-position: top`.
+- **Tinggi foto:** `height: 100%` mengikuti tinggi baris grid yang sama dengan kolom teks (dari atas nama sampai sejajar baris CTA) — otomatis menyesuaikan kalau panjang teks berubah, bukan angka tetap. `object-fit: contain`, `object-position: bottom` (lihat catatan `object-fit` di bawah — sebelumnya sempat tertulis `cover` di sini, itu keliru, sudah dikoreksi supaya konsisten dengan instruksi di bullet Treatment foto).
 - **Nama:** `GABRIEL GAETANO` di `--text-display-xl` diperbesar lagi khusus untuk elemen ini (`clamp(56px, 12vw, 160px)`), huruf kapital penuh, `letter-spacing: -0.03em`, warna Platinum, posisi 2 baris (`GABRIEL` / `GAETANO`) rata kiri kolom teks. Foto overlap ke ujung kanan baris kedua nama (`GAETANO`) karena kolom foto mulai di titik itu — efek "menimpa huruf" didapat dari overlap grid, bukan positioning manual.
+- **Constraint nyata dari bentuk aset (dicatat dari implementasi, bukan asumsi):** karena siluet cutout menyempit di area kepala (bukan persegi penuh), overlap ke huruf "GAETANO" cuma tercapai kalau kolom foto digeser tambahan ~18% ke kiri, dan itu **hanya aman diterapkan di breakpoint `xl` (≥1280px)** — di bawahnya, geseran yang sama menabrak subteks karena kolom sudah terlalu sempit untuk menampung nama & subteks yang tidak overlap. Di breakpoint `lg` ke bawah, terima saja nama & foto bertemu tanpa overlap — itu bukan bug, itu batas nyata dari rasio kolom `1.3fr/1fr` dengan bentuk aset ini.
+- **Subteks capped 46ch** dengan jarak aman minimum 22px dari tepi siluet — supaya baris terakhir paragraf tidak ketutup badan foto. Ini aturan tetap, bukan cuma workaround sekali pakai.
 - **Treatment foto — asset pre-processed, bukan filter CSS runtime:** foto sudah diproses jadi PNG transparan duotone (`gabriel-duotone.png`) — siluet badan+kepala, background sudah dihapus total, warna sudah *baked-in* mengikuti gradasi onyx → steel-deep → steel → steel-light. Tidak perlu lagi `filter: grayscale/contrast` atau `mix-blend-mode` di CSS, itu instruksi versi lama sebelum asset final ada. Pakai `object-fit: contain` (bukan `cover`) karena bentuknya siluet potongan badan, bukan foto kotak penuh — kalau pakai `cover` siluetnya akan terpotong salah.
 - **Mask fade bawah:** opsional sekarang (asset sudah transparan di sekelilingnya), tapi tetap bisa dipakai kalau mau transisi lebih halus ke bagian bawah viewport — `mask-image: linear-gradient(to bottom, black 90%, transparent 100%)` di atas PNG-nya.
 - **Urutan visual kolom kiri:** eyebrow tag → nama besar (elemen fokus) → *(opsional)* baris positioning pendek (lihat CONTENT-STRATEGY §2, Opsi C) → subteks 1-2 kalimat → dua CTA.
-- **Floating status card — posisi baru:** menempel di sudut **kiri-bawah foto**, sedikit overlap ke tepi foto (bukan lagi di sisi teks) — pola serupa Armory: card mengambang di atas gambar, bukan bersanding dengan teks. Detail isi tetap ikuti §4.5.
+- **Floating status card — posisi baru:** menempel di sudut kiri-bawah foto, tapi digeser ke kanan secukupnya supaya tepi kirinya tetap berada di atas badan/torso yang terlihat — jangan sampai menggantung ke ruang kosong di luar siluet (siluet lebih sempit di area kepala, jadi "kiri-bawah" literal bisa jatuh di luar badan tergantung tinggi card). Anggap ini anchor relatif ke torso, bukan pixel tetap dari tepi kolom foto. Detail isi tetap ikuti §4.5.
 - **Mobile (`sm`):** grid 2 kolom dilepas jadi 1 kolom. Foto pindah ke atas nama sebagai elemen terpisah dengan tinggi tetap (bukan stretch ke tinggi teks) — urutan: eyebrow → foto → nama besar → subteks → CTA. Floating card pindah in-flow di bawah foto atau disembunyikan kalau ruang tidak cukup.
 - **Sumber foto:** minimal 900px lebar untuk hasil tajam di layar retina — foto 433×577 (dipakai saat ini) terlalu kecil untuk ukuran tampil sekarang yang jauh lebih besar dari sebelumnya, akan terlihat lembek/pecah kalau di-stretch.
 
@@ -118,7 +124,7 @@ Foto muncul sekali lagi di halaman, tapi dengan treatment berbeda dari hero — 
 
 - **Asset:** `gabriel-poster-halftone.png` (4-level tone diskrit, gaya poster/cetak) — beda dari duotone di hero, memberi variasi visual sekaligus tetap satu keluarga warna (steel/onyx/platinum).
 - **Ukuran & posisi:** jauh lebih kecil dari hero — `max-width: 280px` (desktop), ditempatkan di sisi kanan blok teks About (grid 2 kolom: teks lebih lebar di kiri, portrait kecil di kanan), bukan elemen dominan seperti di hero.
-- **Aksen pendukung:** label kecil mono di atas/samping portrait, mis. `// beyond the code`, gaya sama dengan tag chip (`--text-mono-xs`, warna Steel-light) — menghubungkan visual dengan sistem index/tag yang sudah dipakai di navbar & floating card.
+- **Aksen pendukung:** label kecil mono di atas/samping portrait, mis. `// beyond the code`, gaya sama dengan tag chip (`--text-mono-xs`). **Warna: Steel (`#536878`), bukan Steel-light** — section ini di atas surface Platinum, dan Steel-light cuma 2.5:1 di situ (gagal WCAG AA), sementara Steel dapat 4.57:1. Steel-light tetap dipakai untuk elemen serupa di atas surface Onyx (mis. floating card hero) — aturan umumnya: pilih varian Steel berdasarkan surface di baliknya, bukan dipatok satu warna untuk semua "label mono kecil".
 - **Mobile (`sm`):** portrait pindah ke atas paragraf About, ukuran diperkecil lagi (`max-width: 180px`), center-aligned — bukan di samping teks.
 - **Jangan** tambahkan animasi/interaksi berat di sini — section About lebih tenang dibanding hero, cukup scroll-reveal fade sederhana kalau ada.
 
