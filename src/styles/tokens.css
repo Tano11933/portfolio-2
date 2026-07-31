@@ -112,12 +112,9 @@
   --radius-pill: 999px; /* §4.4 */
 
   /* -- §4.7 Hero portrait ------------------------------------------------
-     §4.7 sizes the photo off viewport height so it stays an accent and the
-     name stays dominant. Bounded by width too: the name scales with vw, so a
-     purely vh-based portrait grows disproportionately tall on short-and-wide
-     windows and rides up over the eyebrow. Capped near the asset's own 577px
-     so it is never upscaled past its native resolution. */
-  --size-hero-photo: clamp(220px, min(42vh, 32vw), 440px);
+     From lg up the portrait has no size token at all: §4.7 stretches it to the
+     text column's height via the grid row, so the height follows the copy.
+     This is only the fixed height §4.7 specifies for the sm fallback. */
   --size-hero-photo-sm: clamp(180px, 30vh, 240px);
 
   /* -- §4.5 "available" status pulse ------------------------------------- */
@@ -153,27 +150,16 @@
     var(--color-onyx) 100%
   );
 
-  /* §4.7 specifies the bottom fade only: `to bottom, black 70%, transparent`.
-     That assumes a cutout. The supplied asset is a rectangular ID photo with
-     its own studio backdrop, so its other three edges draw hard lines — the
-     left one straight through the name it overlaps, and the top one a visible
-     seam against the hero. These extend §4.7's own principle ("melebur…, bukan
-     dipotong tegas") to the edges that actually show. Bottom stop stays at the
-     specified 70%. */
-  --mask-photo-fade: linear-gradient(
-    to bottom,
-    transparent 0%,
-    black 12%,
-    black 70%,
-    transparent 100%
-  );
-  --mask-photo-edge: linear-gradient(
-    to right,
-    transparent 0%,
-    black 30%,
-    black 93%,
-    transparent 100%
-  );
+  /* §4.7 — bottom edge melts into the next section. Stop is the specified 85%. */
+  --mask-photo-fade: linear-gradient(to bottom, black 85%, transparent 100%);
+
+  /* Leading edge only, and narrow. The portrait is now a tall column whose left
+     edge runs straight down through the tail of GAETANO; without this it reads
+     as the letter being clipped rather than overlapped. Kept narrow: the fade
+     consumes overlap, and at 10% of a 500px column it cancelled most of it.
+     6% ≈ 30px — enough to kill the hard seam, short enough to leave the
+     overlap readable. */
+  --mask-photo-edge: linear-gradient(to right, transparent 0%, black 6%);
 
   /* Saturation boost applied *after* the colour blend. Steel-deep is only ~20%
      saturated, so a literal `mix-blend-mode: color` tint lands near-neutral and

@@ -15,15 +15,20 @@ const SUBTEXT =
   'Informatics undergraduate at Atma Jaya Yogyakarta, currently building production software for garment manufacturing while finishing a thesis on financial systems. I work across web, mobile, and database — from Laravel and Express.js to React and Flutter, end to end.'
 
 /**
- * DESIGN-SYSTEM §4.7 — Name-Behind-Photo.
+ * DESIGN-SYSTEM §4.7 — Name-Behind-Photo as a 1.3fr / 1fr asymmetric grid.
  *
- * Layering uses only §5 values. The name and the portrait both sit on the base
- * layer (z-index 0) and the portrait comes second in the DOM, so it paints over
- * the name without inventing a z-index between 0 and 10 that §5 doesn't define.
- * The status card takes the float layer (10); navbar (50) stays above both.
+ * Three grid children rather than two, so the sm order (eyebrow → photo → name)
+ * works without duplicating the eyebrow: the eyebrow is its own item on row 1,
+ * the rest of the copy is row 2, and the portrait takes column 2 of row 2 — which
+ * is what makes it span from the top of the name down to the CTA line.
  *
- * §4.7's supporting headline is deliberately omitted: §4.7 fixes the block order
- * as eyebrow → name+photo → subtext → CTAs, and §2 marks that line optional.
+ * The overlap is a consequence of the grid, not manual placement: `min-w-0` lets
+ * the 1.3fr column resolve narrower than the name is wide, so GAETANO overflows
+ * its own column and the portrait — later in the DOM, same base layer — paints
+ * over the tail. No pixel offsets are tied to the navbar.
+ *
+ * Layering stays on §5 values: name and portrait both sit at base (0) and rely on
+ * DOM order; the card takes float (10); the navbar (50) is above both.
  */
 export function Hero() {
   const heroRef = useRef<HTMLElement>(null)
@@ -49,93 +54,88 @@ export function Hero() {
       ref={heroRef}
       id="hero"
       tabIndex={-1}
-      className="relative isolate flex min-h-svh scroll-mt-8 items-center overflow-hidden pt-8 pb-8 outline-none md:pb-9"
+      className="relative isolate flex min-h-svh scroll-mt-8 items-center overflow-hidden pt-8 pb-8 outline-none lg:pb-9"
     >
       <GradientMesh scrollTargetRef={heroRef} />
 
-      <div className="shell flex w-full flex-col gap-5 md:gap-6">
-        {/* §2 offers a shorter eyebrow for tight space; the full line wraps
-            below lg, so the short one is used there. */}
-        <motion.p
-          {...rise(0)}
-          className="w-fit rounded-pill border border-steel-light/40 px-3 py-1 font-mono text-mono-xs text-platinum"
-        >
-          <span aria-hidden="true" className="mr-2 inline-block h-1 w-1 rounded-pill bg-success" />
-          <span className="xl:hidden">{EYEBROW_SHORT}</span>
-          <span className="hidden xl:inline">{EYEBROW}</span>
-        </motion.p>
+      <div className="shell w-full">
+        {/* The column gap is what sets how far the name reaches behind the
+            portrait: the photo column starts at (left column width + gap), so a
+            wider gap pushes it right and eats the overlap. space-5 keeps ~100px
+            of GAETANO behind the photo; at space-8 the two merely touched. */}
+        <div className="grid items-stretch gap-5 lg:grid-cols-[1.3fr_1fr]">
+          {/* Row 1, column 1 — eyebrow. §2 offers a shorter variant for tight
+              space; the full line only fits the narrowed column from xl up. */}
+          <motion.p
+            {...rise(0)}
+            className="order-1 w-fit rounded-pill border border-steel-light/40 px-3 py-1 font-mono text-mono-xs text-platinum lg:order-none lg:col-start-1 lg:row-start-1"
+          >
+            <span aria-hidden="true" className="mr-2 inline-block h-1 w-1 rounded-pill bg-success" />
+            <span className="xl:hidden">{EYEBROW_SHORT}</span>
+            <span className="hidden xl:inline">{EYEBROW}</span>
+          </motion.p>
 
-        {/* Name + portrait + companion card.
-            §4.7 puts the non-overlapping fallback at `sm` only, but the overlap
-            still fails through the whole md band: the portrait is sized off
-            viewport *height* while the name scales with *width*, so at 480px the
-            photo is as wide as "GAETANO" itself and buries 42% of it (30% at
-            768px). The stacked layout therefore runs until lg, which is the same
-            reason §4.7 gives for the fallback — "teks jadi tidak terbaca". */}
-        <div className="relative flex flex-col gap-5 lg:block">
-          {/* lg:w-fit makes this box hug the widest name line, so the portrait
-              anchors to the *glyph* edge rather than the container edge — the
-              overlap then stays proportionate as the name scales with vw. */}
-          <div className="relative flex flex-col gap-5 lg:block lg:w-fit">
+          {/* Row 2, column 2 — portrait. Ahead of the text block in the DOM only
+              for source order on mobile; `order` restores the visual order, and
+              the portrait still paints above the name because it is the later
+              *positioned* sibling in this stacking context. */}
+          <div className="relative order-2 lg:order-none lg:col-start-2 lg:row-start-2">
+            <motion.div {...rise(0.16, 24)} className="h-full">
+              <HeroPortrait className="h-[var(--size-hero-photo-sm)] w-fit lg:h-full lg:w-full" />
+            </motion.div>
+
+            {/* §4.7 — card sits on the portrait's bottom-left corner, hanging
+                slightly past its edge (Armory pattern), not beside the text.
+                Hidden below lg under the §4.5 allowance; see note below. */}
+            {/* Overhang is kept to space-3: the photo column starts one gap
+                (space-5) past the text column, so a space-5 overhang would put
+                the card's edge exactly on the subtext's last character. */}
+            <div className="absolute bottom-7 -left-3 z-float hidden w-[min(320px,92%)] lg:block">
+              <StatusCard />
+            </div>
+          </div>
+
+          {/* Row 2, column 1 — name through CTAs. min-w-0 is what allows the
+              column to resolve narrower than the name, producing the overlap. */}
+          <div className="order-3 flex min-w-0 flex-col gap-5 lg:order-none lg:col-start-1 lg:row-start-2 lg:gap-6">
+            {/* Deliberately unpositioned. The portrait column is the only
+                positioned box here, so it paints in a later step than in-flow
+                text and covers the tail of GAETANO. Giving the name
+                `relative z-base` made it positioned too — same paint step, and
+                being later in tree order it landed *above* the photo, which is
+                the inverse of what §4.7 asks for. */}
             <motion.h1
               {...rise(0.08, 24)}
-              className="relative z-base order-2 font-display text-name font-semibold text-platinum uppercase lg:order-none"
+              className="font-display text-name font-semibold text-platinum uppercase"
             >
               <span className="block">Gabriel</span>
               <span className="block">Gaetano</span>
             </motion.h1>
 
-            {/* Positioning lives on this wrapper and animation on the child:
-                Motion writes `transform` inline, which would otherwise clobber
-                a Tailwind translate utility on the same element. */}
-            <div className="z-base order-1 w-fit lg:absolute lg:right-0 lg:bottom-0 lg:order-none lg:translate-x-[68%] xl:translate-x-[52%]">
-              <motion.div {...rise(0.16, 24)}>
-                <HeroPortrait className="h-[var(--size-hero-photo-sm)] lg:h-[var(--size-hero-photo)]" />
-              </motion.div>
-            </div>
-          </div>
+            <motion.p
+              {...rise(0.24)}
+              className="max-w-[40ch] font-display text-display-md font-medium text-platinum"
+            >
+              {POSITIONING}
+            </motion.p>
 
-          {/* §4.5 — companion card pinned bottom-right of the portrait block.
-              Only pinned from xl: the card is ~200px tall, and below 1280px the
-              two-line name is shorter than that, so bottom-aligning it pushes
-              the card up over the eyebrow. Between lg and xl it stays in flow
-              but right-aligned and narrow, keeping the secondary role §4.5
-              gives it.
+            {/* 54ch rather than 62ch: in the 1.3fr column the longer measure
+                fills the full width and runs right up against the floating
+                card, and it is a more comfortable line length regardless. */}
+            <motion.p {...rise(0.3)} className="max-w-[54ch] text-body-lg text-platinum-muted">
+              {SUBTEXT}
+            </motion.p>
 
-              Hidden below 480px under the §4.5 allowance ("boleh disembunyikan
-              sepenuhnya di breakpoint sm kalau ruang tidak cukup"). It costs
-              232px there, which is what pushes the positioning line past the
-              fold; without it that line lands at 505px on a 740px screen. The
-              content is not lost — availability is in the eyebrow and the stack
-              repeats in the trust bar directly below. */}
-          <div className="z-float hidden md:block lg:mt-6 lg:ml-auto lg:w-[340px] xl:absolute xl:right-0 xl:bottom-0 xl:mt-0 xl:w-[min(340px,38%)]">
-            <StatusCard />
+            <motion.div {...rise(0.38)} className="mt-1 flex flex-wrap gap-4">
+              <Button href="#work" onClick={(e) => goTo(e, '#work')}>
+                View Work
+              </Button>
+              <Button variant="outline" href="#contact" onClick={(e) => goTo(e, '#contact')}>
+                Get in Touch
+              </Button>
+            </motion.div>
           </div>
         </div>
-
-        {/* §4.7 visual order — the optional positioning line sits between the
-            name and the subtext, so the hero states what he does rather than
-            only who he is. Set at display-md in Platinum: smaller than the
-            name, but ahead of the muted subtext in the hierarchy. */}
-        <motion.p
-          {...rise(0.24)}
-          className="max-w-[40ch] font-display text-display-md font-medium text-platinum"
-        >
-          {POSITIONING}
-        </motion.p>
-
-        <motion.p {...rise(0.3)} className="max-w-[62ch] text-body-lg text-platinum-muted">
-          {SUBTEXT}
-        </motion.p>
-
-        <motion.div {...rise(0.38)} className="flex flex-wrap gap-4">
-          <Button href="#work" onClick={(e) => goTo(e, '#work')}>
-            View Work
-          </Button>
-          <Button variant="outline" href="#contact" onClick={(e) => goTo(e, '#contact')}>
-            Get in Touch
-          </Button>
-        </motion.div>
       </div>
     </section>
   )

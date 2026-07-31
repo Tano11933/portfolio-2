@@ -42,7 +42,9 @@ export function HeroPortrait({ className }: { className?: string }) {
           width={433}
           height={577}
           decoding="async"
-          className="block h-full w-auto object-cover object-top"
+          // w-auto below lg keeps the sm fallback at its native aspect; from lg
+          // the portrait fills the grid column and §4.7's cover/top crop applies.
+          className="block h-full w-auto object-cover object-top lg:w-full"
           style={{ filter: 'grayscale(1) contrast(1.15)' }}
         />
 

@@ -91,8 +91,8 @@ Basis 4px, skala geometris ringan supaya konsisten di semua breakpoint:
 ### 4.4 Tag / Chip (stack teknologi)
 - Font mono, `--text-mono-xs`, padding `space-1 space-3`, radius pill `999px`, border 1px `--color-steel-light`, bg transparan. Dipakai di project card & floating status card.
 
-### 4.5 Floating Status Card (elemen pelengkap hero, lihat catatan posisi baru di §4.7)
-- Sejak hero diganti jadi Name-Behind-Photo (§4.7), card ini turun peran jadi elemen sekunder kecil di sisi kanan bawah blok foto — bukan lagi elemen full-width yang overlap ke section berikutnya.
+### 4.5 Floating Status Card (elemen pelengkap hero, posisi terkini lihat §4.7)
+- Peran: sekunder, pelengkap — bukan penarik perhatian utama. Posisi persisnya (yang bisa berubah seiring iterasi layout hero) didefinisikan di §4.7 agar hanya ada satu sumber kebenaran.
 - Isi: badge status ("Open to full-time roles & freelance projects"), 3-4 tag stack aktif saat ini, satu baris "currently building: EagleJeans" — dinamis, terasa hidup, bukan statis.
 - Background: glass-morphism ringan (`background: rgba(10,10,10,0.6); backdrop-filter: blur(20px)`), border gradient-flow tipis 1px.
 - Mobile: card ini boleh disembunyikan sepenuhnya di breakpoint `sm` kalau ruang tidak cukup setelah foto+nama — bukan elemen wajib tampil di semua ukuran layar.
@@ -101,13 +101,16 @@ Basis 4px, skala geometris ringan supaya konsisten di semua breakpoint:
 - Full-width, bg Onyx pekat. Grid: kolom kontak besar (headline ajakan + email besar sebagai link), kolom link cepat, kolom sosial. Angka tahun & lokasi (Yogyakarta/Jakarta) kecil di baris paling bawah.
 
 ### 4.7 Hero — Name-Behind-Photo (menggantikan hero teks-saja)
-Signature moment baru pengganti hero polos: nama besar sebagai tipografi dominan, foto diri (duotone) menimpa sebagian huruf.
+Signature moment baru pengganti hero polos: nama besar sebagai tipografi dominan, foto diri (duotone) menimpa sebagian huruf dan membentuk kolom visual besar di sisi kanan.
 
-- **Nama:** `GABRIEL GAETANO` di `--text-display-xl` diperbesar lagi khusus untuk elemen ini (`clamp(56px, 12vw, 160px)`), huruf kapital penuh, `letter-spacing: -0.03em`, warna Platinum, posisi 2 baris (`GABRIEL` / `GAETANO`) rata kiri container.
-- **Foto:** ditempatkan absolute, overlap ke baris kedua nama (`GAETANO`), z-index di atas teks nama tapi di bawah navbar & floating card. Ukuran foto proporsional ke tinggi viewport, bukan lebar penuh — foto adalah aksen, nama tetap elemen dominan.
-- **Treatment foto — duotone, bukan B&W generik:** `filter: grayscale(1) contrast(1.15)`, ditambah layer overlay warna dengan `mix-blend-mode: color` memakai gradient dari `--color-steel-deep` ke `--color-onyx`, supaya foto tetap terasa satu palet dengan sisa halaman (bukan foto hitam-putih lepas seperti referensi Awwwards yang dipakai). Tepi bawah foto diberi `mask-image: linear-gradient(to bottom, black 70%, transparent 100%)` supaya melebur ke section berikutnya, bukan dipotong tegas.
-- **Urutan visual (atas ke bawah dalam satu blok hero):** eyebrow tag → nama besar+foto (elemen fokus) → subteks 1-2 kalimat → dua CTA. Floating status card (§4.5) pindah posisi jadi lebih kecil, disematkan di sisi kanan bawah blok foto (bukan lagi full-width overlap ke section berikutnya) — perannya sekarang pelengkap, bukan penarik perhatian utama.
-- **Mobile (`sm`):** overlap nama-foto terlalu berisiko di layar sempit (teks jadi tidak terbaca). Di breakpoint ini, foto pindah ke atas nama sebagai elemen terpisah (bukan overlap) — nama tetap besar di bawahnya, urutan berubah jadi: eyebrow → foto (ukuran sedang, tanpa overlap) → nama besar → subteks → CTA.
+- **Grid:** hero content jadi 2 kolom asimetris — `grid-template-columns: 1.3fr 1fr` (desktop). Kolom kiri: eyebrow, nama, headline pendukung, subteks, CTA. Kolom kanan: foto. Jangan kunci lebar kolom foto ke posisi pixel nav item tertentu (mis. "About") — biarkan proporsional lewat grid supaya tidak rapuh terhadap perubahan nav, tapi karena container sama dengan navbar, hasilnya akan tetap terlihat sejajar secara visual.
+- **Tinggi foto:** `height: 100%` mengikuti tinggi baris grid yang sama dengan kolom teks (dari atas nama sampai sejajar baris CTA) — otomatis menyesuaikan kalau panjang teks berubah, bukan angka tetap. `object-fit: cover`, `object-position: top`.
+- **Nama:** `GABRIEL GAETANO` di `--text-display-xl` diperbesar lagi khusus untuk elemen ini (`clamp(56px, 12vw, 160px)`), huruf kapital penuh, `letter-spacing: -0.03em`, warna Platinum, posisi 2 baris (`GABRIEL` / `GAETANO`) rata kiri kolom teks. Foto overlap ke ujung kanan baris kedua nama (`GAETANO`) karena kolom foto mulai di titik itu — efek "menimpa huruf" didapat dari overlap grid, bukan positioning manual.
+- **Treatment foto — duotone, bukan B&W generik:** `filter: grayscale(1) contrast(1.15)`, ditambah layer overlay warna dengan `mix-blend-mode: color` memakai gradient dari `--color-steel-deep` ke `--color-onyx`, supaya foto tetap terasa satu palet dengan sisa halaman. Tepi bawah foto diberi `mask-image: linear-gradient(to bottom, black 85%, transparent 100%)` supaya melebur ke section berikutnya.
+- **Urutan visual kolom kiri:** eyebrow tag → nama besar (elemen fokus) → *(opsional)* baris positioning pendek (lihat CONTENT-STRATEGY §2, Opsi C) → subteks 1-2 kalimat → dua CTA.
+- **Floating status card — posisi baru:** menempel di sudut **kiri-bawah foto**, sedikit overlap ke tepi foto (bukan lagi di sisi teks) — pola serupa Armory: card mengambang di atas gambar, bukan bersanding dengan teks. Detail isi tetap ikuti §4.5.
+- **Mobile (`sm`):** grid 2 kolom dilepas jadi 1 kolom. Foto pindah ke atas nama sebagai elemen terpisah dengan tinggi tetap (bukan stretch ke tinggi teks) — urutan: eyebrow → foto → nama besar → subteks → CTA. Floating card pindah in-flow di bawah foto atau disembunyikan kalau ruang tidak cukup.
+- **Sumber foto:** minimal 900px lebar untuk hasil tajam di layar retina — foto 433×577 (dipakai saat ini) terlalu kecil untuk ukuran tampil sekarang yang jauh lebih besar dari sebelumnya, akan terlihat lembek/pecah kalau di-stretch.
 
 ---
 
