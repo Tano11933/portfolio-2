@@ -2,7 +2,7 @@ import { Reveal } from '../motion/Reveal'
 
 /** CONTENT-STRATEGY §3 — "Tools I ship with" instead of an empty client-logo row. */
 const LABEL = 'Tools I ship with'
-const TOOLS = ['Laravel', 'React', 'Flutter', 'MySQL', 'Git', 'REST API']
+const TOOLS = ['Laravel', 'Express.js', 'React', 'Flutter', 'MySQL', 'Git', 'REST API']
 
 /**
  * Thin stack bar. Stays on the onyx surface so the §4.5 status card, which

@@ -5,7 +5,7 @@ export const NAV_ITEMS = [
   { index: '03', label: 'Contact', href: '#contact' },
 ] as const
 
-export const WORDMARK = 'Gabriel Baskara'
+export const WORDMARK = 'Gabriel Gaetano'
 
 /** PRD §7 — every CTA is a real, working link. */
 export const CONTACT = {

@@ -9,6 +9,8 @@ import { useSmoothScroll } from '../../lib/smooth-scroll-context'
 /** CONTENT-STRATEGY §2 — copy is verbatim; §2 supplies both eyebrow lengths. */
 const EYEBROW = 'Open to full-time roles & freelance projects — Yogyakarta / Jakarta'
 const EYEBROW_SHORT = 'Open to opportunities — Yogyakarta / Jakarta'
+/** §2 supporting headline, option C (the recommended one). */
+const POSITIONING = 'Full-stack developer building production systems for real businesses.'
 const SUBTEXT =
   'Informatics undergraduate at Atma Jaya Yogyakarta, currently building production software for garment manufacturing while finishing a thesis on financial systems. I work across web, mobile, and database — from Laravel and Express.js to React and Flutter, end to end.'
 
@@ -93,25 +95,40 @@ export function Hero() {
             </div>
           </div>
 
-          {/* §4.7 — companion card pinned bottom-right of the portrait block.
+          {/* §4.5 — companion card pinned bottom-right of the portrait block.
               Only pinned from xl: the card is ~200px tall, and below 1280px the
               two-line name is shorter than that, so bottom-aligning it pushes
               the card up over the eyebrow. Between lg and xl it stays in flow
-              but right-aligned and narrow, which keeps the secondary role §4.7
-              asks for. Below lg it is full-width in flow (§6 sm). */}
-          <div className="z-float lg:mt-6 lg:ml-auto lg:w-[340px] xl:absolute xl:right-0 xl:bottom-0 xl:mt-0 xl:w-[min(340px,38%)]">
+              but right-aligned and narrow, keeping the secondary role §4.5
+              gives it.
+
+              Hidden below 480px under the §4.5 allowance ("boleh disembunyikan
+              sepenuhnya di breakpoint sm kalau ruang tidak cukup"). It costs
+              232px there, which is what pushes the positioning line past the
+              fold; without it that line lands at 505px on a 740px screen. The
+              content is not lost — availability is in the eyebrow and the stack
+              repeats in the trust bar directly below. */}
+          <div className="z-float hidden md:block lg:mt-6 lg:ml-auto lg:w-[340px] xl:absolute xl:right-0 xl:bottom-0 xl:mt-0 xl:w-[min(340px,38%)]">
             <StatusCard />
           </div>
         </div>
 
+        {/* §4.7 visual order — the optional positioning line sits between the
+            name and the subtext, so the hero states what he does rather than
+            only who he is. Set at display-md in Platinum: smaller than the
+            name, but ahead of the muted subtext in the hierarchy. */}
         <motion.p
           {...rise(0.24)}
-          className="max-w-[62ch] text-body-lg text-platinum-muted"
+          className="max-w-[40ch] font-display text-display-md font-medium text-platinum"
         >
+          {POSITIONING}
+        </motion.p>
+
+        <motion.p {...rise(0.3)} className="max-w-[62ch] text-body-lg text-platinum-muted">
           {SUBTEXT}
         </motion.p>
 
-        <motion.div {...rise(0.32)} className="flex flex-wrap gap-4">
+        <motion.div {...rise(0.38)} className="flex flex-wrap gap-4">
           <Button href="#work" onClick={(e) => goTo(e, '#work')}>
             View Work
           </Button>

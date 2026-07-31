@@ -57,10 +57,11 @@ export function Footer() {
         </div>
 
         <div className="mt-8 flex flex-col gap-2 border-t border-steel-deep pt-5 font-mono text-mono-xs text-steel-light md:flex-row md:items-center md:justify-between">
-          {/* §4.6 writes the location as "Semarang/Yogyakarta"; Yogyakarta is
-              used here to match the hero eyebrow in CONTENT-STRATEGY §2. */}
-          <span>© {new Date().getFullYear()} {WORDMARK}</span>
-          <span>Yogyakarta, Indonesia</span>
+          <span>
+            © {new Date().getFullYear()} {WORDMARK}
+          </span>
+          {/* §4.6 — matches the hero eyebrow in CONTENT-STRATEGY §2. */}
+          <span>Yogyakarta / Jakarta</span>
         </div>
       </div>
     </footer>
