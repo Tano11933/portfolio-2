@@ -140,33 +140,15 @@
     var(--color-onyx) 100%
   );
 
-  /* -- §4.7 Portrait duotone --------------------------------------------
-     Tint layer for `mix-blend-mode: color`: the blend takes lightness from
-     the greyscaled photo underneath and hue/saturation from here, so the
-     portrait lands in the same palette as the rest of the page. */
-  --gradient-duotone: linear-gradient(
-    135deg,
-    var(--color-steel-deep) 0%,
-    var(--color-onyx) 100%
-  );
+  /* §4.7 — softens the flat bottom edge of the cut-out torso. Stop is the
+     specified 90%. The side fade that used to sit alongside this is gone: the
+     asset is transparent around the silhouette, so there is no longer a hard
+     vertical edge cutting through the name.
 
-  /* §4.7 — bottom edge melts into the next section. Stop is the specified 85%. */
-  --mask-photo-fade: linear-gradient(to bottom, black 85%, transparent 100%);
-
-  /* Leading edge only, and narrow. The portrait is now a tall column whose left
-     edge runs straight down through the tail of GAETANO; without this it reads
-     as the letter being clipped rather than overlapped. Kept narrow: the fade
-     consumes overlap, and at 10% of a 500px column it cancelled most of it.
-     6% ≈ 30px — enough to kill the hard seam, short enough to leave the
-     overlap readable. */
-  --mask-photo-edge: linear-gradient(to right, transparent 0%, black 6%);
-
-  /* Saturation boost applied *after* the colour blend. Steel-deep is only ~20%
-     saturated, so a literal `mix-blend-mode: color` tint lands near-neutral and
-     the portrait still reads as plain black-and-white — the one outcome §4.7
-     explicitly rules out. This amplifies the tint the blend already produced,
-     so the hue stays exactly the palette's and no new colour is introduced. */
-  --duotone-saturation: 2.6;
+     The duotone gradient and saturation-boost tokens that used to live here
+     went with it — the colour is baked into the asset now, so there is no CSS
+     blend left to tint or amplify. */
+  --mask-photo-fade: linear-gradient(to bottom, black 90%, transparent 100%);
 
   /* -- §5 Layering — the only z-index values allowed in this codebase ---- */
   --z-mesh: -1;

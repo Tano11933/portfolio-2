@@ -104,6 +104,8 @@ Format konsisten tiap case study:
 
 ## 6. About / Beyond Code
 
+Section ini juga jadi tempat foto muncul untuk kedua kalinya di halaman — versi halftone kecil di samping teks (lihat DESIGN-SYSTEM.md §4.8), beda treatment dari duotone di hero supaya terasa seperti aksen yang disengaja, bukan pengulangan.
+
 Gabungkan narasi teknis + kepemimpinan (dari pengalaman organisasi) — ini yang membedakan dari kandidat lain, khususnya untuk klien yang menilai kemampuan komunikasi & manajemen proyek:
 
 > "Outside of code, I've led fundraising and sponsorship efforts for two major campus events (Sparkfest, Kopma Fest) — negotiating with sponsors, managing budgets, and coordinating teams. It's the same skill set that makes client work smooth: clear communication, realistic scoping, and following through."

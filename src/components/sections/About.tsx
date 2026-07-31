@@ -1,3 +1,4 @@
+import halftone from '../../assets/images/gabriel-poster-halftone.png'
 import { Section, SectionHeading } from '../layout/Section'
 import { Reveal } from '../motion/Reveal'
 
@@ -8,23 +9,31 @@ import { Reveal } from '../motion/Reveal'
  *
  * Education sits small underneath as §6 asks — credibility, not a headline.
  * The graduation clause §6 leaves blank is omitted rather than invented.
+ *
+ * DESIGN-SYSTEM §4.8 adds the halftone portrait beside the copy. The heading
+ * moved above the two columns rather than beside them: §4.8 wants a 2-column
+ * text/portrait split, and keeping the old heading column as a third track left
+ * the quote about 270px wide in the lg band.
  */
 export function About() {
   return (
     <Section id="about" tone="light">
-      {/* One reveal for the whole block — the section is a single statement. */}
-      <Reveal className="grid gap-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-9">
+      <Reveal>
         <SectionHeading tone="light" label="About" title="Beyond code" />
+      </Reveal>
 
-        <div className="flex flex-col gap-6">
-          <blockquote className="text-body-lg text-onyx">
+      {/* One reveal for the pair — §4.8 asks for a simple fade here and nothing
+          more; this section should read calmer than the hero. */}
+      <Reveal className="mt-7 grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start lg:gap-8">
+        <div className="order-2 flex flex-col gap-6 lg:order-none">
+          <blockquote className="max-w-[60ch] text-body-lg text-onyx">
             Outside of code, I&rsquo;ve led fundraising and sponsorship efforts for two major
             campus events (Sparkfest, Kopma Fest) — negotiating with sponsors, managing budgets,
             and coordinating teams. It&rsquo;s the same skill set that makes client work smooth:
             clear communication, realistic scoping, and following through.
           </blockquote>
 
-          <dl className="flex flex-col gap-4 border-t border-platinum-muted pt-5">
+          <dl className="flex max-w-[60ch] flex-col gap-4 border-t border-platinum-muted pt-5">
             <div className="flex flex-col gap-1">
               <dt className="font-mono text-mono-xs uppercase text-steel">Education</dt>
               <dd className="text-body-sm text-steel-deep">
@@ -41,6 +50,29 @@ export function About() {
             </div>
           </dl>
         </div>
+
+        {/* §4.8 — second, quieter appearance of the portrait. Below lg it moves
+            above the copy and shrinks, per §4.8's sm rule. */}
+        <figure className="order-1 flex flex-col items-center gap-3 lg:order-none lg:items-end">
+          <img
+            src={halftone}
+            // Decorative callback: the hero portrait already identifies him and
+            // the name is the page h1, so a second identical alt would just be
+            // announced twice.
+            alt=""
+            width={433}
+            height={510}
+            loading="lazy"
+            decoding="async"
+            className="w-full max-w-[180px] lg:max-w-[200px] xl:max-w-[280px]"
+          />
+          {/* §4.8 specifies Steel-light for this label, but this section is the
+              Platinum surface, where Steel-light measures 2.5:1. Steel is the
+              light-surface equivalent already used for the section eyebrow. */}
+          <figcaption className="font-mono text-mono-xs text-steel">
+            // beyond the code
+          </figcaption>
+        </figure>
       </Reveal>
     </Section>
   )

@@ -80,8 +80,22 @@ export function Hero() {
               the portrait still paints above the name because it is the later
               *positioned* sibling in this stacking context. */}
           <div className="relative order-2 lg:order-none lg:col-start-2 lg:row-start-2">
+            {/* Nudged left so the silhouette actually reaches the name. The
+                cut-out is only full-width at the shoulders; at the height
+                GAETANO sits it is just the head, so the figure's own edge
+                starts ~150px inside the column and letters and body merely met
+                without touching.
+
+                xl only. The same shift also drags the shoulders left over the
+                body copy, and in the lg band the text column is narrow enough
+                that there is no offset which reaches the name without covering
+                the subtext. Below 1280px the two meet without overlapping.
+
+                Sits on the portrait wrapper rather than the motion element:
+                Motion writes `transform` inline and would clobber a Tailwind
+                translate on the same node. */}
             <motion.div {...rise(0.16, 24)} className="h-full">
-              <HeroPortrait className="h-[var(--size-hero-photo-sm)] w-fit lg:h-full lg:w-full" />
+              <HeroPortrait className="h-[var(--size-hero-photo-sm)] w-fit lg:h-full lg:w-full xl:-translate-x-[18%]" />
             </motion.div>
 
             {/* §4.7 — card sits on the portrait's bottom-left corner, hanging
@@ -112,6 +126,10 @@ export function Hero() {
               <span className="block">Gaetano</span>
             </motion.h1>
 
+            {/* Body copy is capped short of the column edge. Only the name is
+                meant to run into the portrait; the silhouette is full-width at
+                the shoulders, so at subtext height it reaches ~50px inside the
+                column and would otherwise cover the last words of each line. */}
             <motion.p
               {...rise(0.24)}
               className="max-w-[40ch] font-display text-display-md font-medium text-platinum"
@@ -119,10 +137,7 @@ export function Hero() {
               {POSITIONING}
             </motion.p>
 
-            {/* 54ch rather than 62ch: in the 1.3fr column the longer measure
-                fills the full width and runs right up against the floating
-                card, and it is a more comfortable line length regardless. */}
-            <motion.p {...rise(0.3)} className="max-w-[54ch] text-body-lg text-platinum-muted">
+            <motion.p {...rise(0.3)} className="max-w-[46ch] text-body-lg text-platinum-muted">
               {SUBTEXT}
             </motion.p>
 
