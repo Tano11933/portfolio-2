@@ -1,0 +1,165 @@
+/* ============================================================================
+   DESIGN TOKENS — single source of truth, transcribed from DESIGN-SYSTEM.md §1–3.
+   Nothing in this codebase may use a literal hex or px value; everything
+   resolves through a custom property declared here.
+
+   Tailwind v4 is CSS-first: `@theme` *is* the theme config (the v3
+   `tailwind.config.js` equivalent). Every declaration below is emitted as a
+   real custom property on `:root` AND registered as a Tailwind utility
+   namespace, so `--color-onyx` exists as CSS and as `bg-onyx`/`text-onyx`.
+
+   Naming note: Tailwind's spacing namespace is `--spacing-*`, so DESIGN-SYSTEM
+   `--space-N` is declared here as `--spacing-N`. The step numbers are 1:1 —
+   `p-9` is space-9 (96px), not Tailwind's stock 36px scale.
+   ========================================================================= */
+
+/* `static` (not plain `@theme`) is deliberate: Tailwind tree-shakes unused
+   theme keys out of `:root`, which silently breaks any token referenced from
+   hand-written CSS or an inline style rather than a utility class. */
+@theme static {
+  /* -- §1 Color --------------------------------------------------------- */
+  --color-onyx: #0a0a0a;
+  --color-platinum: #e5e4e2;
+  --color-steel: #536878;
+  --color-steel-deep: #2b3640;
+  --color-steel-light: #7c93a3;
+  --color-platinum-muted: #c9c7c3;
+  --color-success: #4a7a5e;
+  /* Measured WCAG ratios, and the two role assignments in §1 they contradict:
+       platinum        on onyx      15.58  ✓ body text on dark
+       platinum-muted  on onyx      11.73  ✓ (this is the §7 checklist item)
+       steel-light     on onyx       6.18  ✓ links + captions on dark
+       steel           on onyx       3.41  ✗ normal text — borders/icons only
+       steel-deep      on platinum   9.70  ✓ secondary text on light
+       steel           on platinum   4.57  ✓ links on light
+       platinum-muted  on platinum   1.33  ✗ dividers only, never text
+     So: §1 lists `steel` as the link colour and `platinum-muted` as secondary
+     text on light. Both fail AA in those roles, and are used here as noted
+     above instead. `success` (3.99 on onyx) is only ever a dot, never text. */
+
+  /* -- §2 Typography — families ----------------------------------------- */
+  --font-display: 'Clash Display', system-ui, sans-serif;
+  --font-body: 'Switzer', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* -- §2 Typography — scale (base 16px, ratio ~1.25) --------------------
+     DESIGN-SYSTEM gives a desktop and a mobile value for the four largest
+     steps. Those exact numbers are the clamp endpoints; the fluid middle
+     just avoids a hard jump at one breakpoint. Ramp runs 480px → 1024px. */
+  --text-display-xl: clamp(44px, 19.29px + 5.147vw, 72px);
+  --text-display-xl--line-height: 1.05;
+  --text-display-xl--letter-spacing: -0.02em;
+
+  --text-display-lg: clamp(32px, 17.88px + 2.941vw, 48px);
+  --text-display-lg--line-height: 1.1;
+  --text-display-lg--letter-spacing: -0.02em;
+
+  --text-display-md: clamp(24px, 16.94px + 1.471vw, 32px);
+  --text-display-md--line-height: 1.2;
+  --text-display-md--letter-spacing: -0.02em;
+
+  --text-body-lg: clamp(18px, 16.24px + 0.368vw, 20px);
+  --text-body-lg--line-height: 1.5;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 1.6;
+
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 1.5;
+
+  --text-mono-xs: 12px;
+  --text-mono-xs--line-height: 1.4;
+  --text-mono-xs--letter-spacing: 0.04em;
+
+  /* Ghost number watermark on the §4.3 process cards. §4.3 fixes the opacity
+     (8–12%) but not the size; this keeps it well clear of display-xl so the
+     watermark and the navbar index can never be mistaken for one system. */
+  --text-watermark: clamp(72px, 48px + 6vw, 128px);
+  --text-watermark--line-height: 1;
+
+  /* -- §3 Spacing — 4px basis ------------------------------------------- */
+  --spacing: 4px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 24px;
+  --spacing-6: 32px;
+  --spacing-7: 48px;
+  --spacing-8: 64px;
+  --spacing-9: 96px;
+  --spacing-10: 128px;
+  --spacing-11: 160px;
+
+  /* -- §3 Container ------------------------------------------------------ */
+  --container-page: 1280px;
+
+  /* -- §4.1 Navbar scrolled state ---------------------------------------- */
+  --blur-nav: 12px;
+  --blur-mesh: 96px; /* §4 hero gradient-mesh blobs */
+  --blur-glass: 20px; /* §4.5 floating status card */
+  --shadow-nav: 0 1px 24px rgb(0 0 0 / 0.45);
+  --shadow-card: 0 16px 48px rgb(0 0 0 / 0.3);
+
+  /* -- §4 Radii ---------------------------------------------------------- */
+  --radius-card: 16px; /* §4.3 */
+  --radius-btn: 12px; /* §4.2 */
+  --radius-pill: 999px; /* §4.4 */
+
+  /* -- §4.5 "available" status pulse ------------------------------------- */
+  --animate-status: status-pulse 2.6s ease-in-out infinite;
+
+  /* -- §6 Breakpoints ---------------------------------------------------
+     DESIGN-SYSTEM §6 treats `sm` (<480px) as the base state, so Tailwind's
+     stock `sm:`/`2xl:` are removed and the remaining three map to the
+     documented range *starts*. */
+  --breakpoint-sm: initial;
+  --breakpoint-md: 480px;
+  --breakpoint-lg: 768px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: initial;
+}
+
+:root {
+  /* -- §1 Signature gradient -------------------------------------------- */
+  --gradient-flow: linear-gradient(
+    135deg,
+    var(--color-steel) 0%,
+    var(--color-steel-deep) 45%,
+    var(--color-onyx) 100%
+  );
+
+  /* -- §5 Layering — the only z-index values allowed in this codebase ---- */
+  --z-mesh: -1;
+  --z-base: 0;
+  --z-float: 10;
+  --z-nav: 50;
+  --z-overlay: 100;
+  --z-toast: 200;
+}
+
+/* §5 exposed as utilities so components never write a raw z-index. */
+@utility z-mesh {
+  z-index: var(--z-mesh);
+}
+@utility z-base {
+  z-index: var(--z-base);
+}
+@utility z-float {
+  z-index: var(--z-float);
+}
+@utility z-nav {
+  z-index: var(--z-nav);
+}
+@utility z-overlay {
+  z-index: var(--z-overlay);
+}
+@utility z-toast {
+  z-index: var(--z-toast);
+}
+
+/* §1 gradient as a utility — applied to background-image, not background,
+   so callers can still set a fallback colour underneath. */
+@utility bg-flow {
+  background-image: var(--gradient-flow);
+}

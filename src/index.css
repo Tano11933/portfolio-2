@@ -1,0 +1,194 @@
+@import 'tailwindcss';
+
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+
+@import './styles/fonts.css';
+@import './styles/tokens.css';
+
+/* ============================================================================
+   BASE TYPOGRAPHY — DESIGN-SYSTEM §2.
+   Elements are styled from the scale directly so semantic markup is correct by
+   default and components only override where they genuinely differ.
+   ========================================================================= */
+
+@layer base {
+  html {
+    /* Lenis drives scrolling; native smooth scroll would fight it. */
+    scroll-behavior: auto;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-onyx text-platinum font-body text-body-md;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-synthesis: none;
+  }
+
+  h1 {
+    @apply font-display text-display-xl font-semibold;
+  }
+
+  h2 {
+    @apply font-display text-display-lg font-semibold;
+  }
+
+  h3 {
+    @apply font-display text-display-md font-medium;
+  }
+
+  h4 {
+    @apply font-display text-body-lg font-medium;
+  }
+
+  h5,
+  h6 {
+    @apply font-display text-body-md font-medium;
+  }
+
+  p {
+    @apply text-body-md;
+  }
+
+  small {
+    @apply text-body-sm;
+  }
+
+  code,
+  kbd,
+  pre,
+  samp {
+    @apply font-mono text-mono-xs;
+  }
+
+  /* Keyboard focus must stay visible on every interactive element; :focus-visible
+     keeps pointer interaction clean. */
+  :focus-visible {
+    outline: 2px solid var(--color-steel-light);
+    outline-offset: 2px;
+    border-radius: var(--radius-btn);
+  }
+
+  ::selection {
+    background: var(--color-steel);
+    color: var(--color-platinum);
+  }
+}
+
+/* ============================================================================
+   GLOBAL MOTION POLICY — PRD §7 / DESIGN-SYSTEM §6.
+   Motion components additionally branch on useReducedMotion(); this is the
+   backstop for anything CSS-driven.
+   ========================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Page shell — §3: max-width 1280px, gutter space-6 desktop / space-4 mobile. */
+@utility shell {
+  width: 100%;
+  max-width: var(--container-page);
+  margin-inline: auto;
+  padding-inline: var(--spacing-4);
+
+  @media (width >= 768px) {
+    padding-inline: var(--spacing-6);
+  }
+}
+
+/* §4.5 — the status dot's halo. Killed by the global reduced-motion rule. */
+@keyframes status-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+}
+
+/* §1/§4.2 — a 1px gradient-flow border drawn as a masked ring so it can sit on
+   any background and fade in on hover without shifting layout. */
+@utility gradient-ring {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background-image: var(--gradient-flow);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 240ms ease;
+  }
+
+  &:hover::before,
+  &:focus-visible::before {
+    opacity: 1;
+  }
+}
+
+/* Same ring, always on — §4.5 floating status card. */
+@utility gradient-ring-static {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background-image: var(--gradient-flow);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+/* Section rhythm — §3: space-9…space-11 desktop, space-7…space-8 mobile.
+   Split into top and bottom so a section that continues the previous one's
+   surface can drop its top padding; stacking both would put ~256px between
+   them, well outside the range §3 allows. */
+@utility section-pt {
+  padding-block-start: var(--spacing-8);
+
+  @media (width >= 768px) {
+    padding-block-start: var(--spacing-10);
+  }
+}
+
+@utility section-pb {
+  padding-block-end: var(--spacing-8);
+
+  @media (width >= 768px) {
+    padding-block-end: var(--spacing-10);
+  }
+}
