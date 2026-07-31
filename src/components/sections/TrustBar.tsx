@@ -10,10 +10,10 @@ const TOOLS = ['Laravel', 'React', 'Flutter', 'MySQL', 'Git', 'REST API']
  * Top padding clears that overlap.
  */
 export function TrustBar() {
-  // The large top padding only exists to clear the overlapping status card,
-  // which is in-flow below 480px — so mobile keeps the normal §3 rhythm.
+  // §4.7 moved the status card inside the hero, so the extra top padding that
+  // used to clear its overlap is gone and this is back to the §3 rhythm.
   return (
-    <section aria-label={LABEL} className="bg-onyx pt-7 pb-8 md:pt-10">
+    <section aria-label={LABEL} className="bg-onyx pt-7 pb-8 md:pt-8">
       <Reveal className="shell">
         <div className="flex flex-col gap-5 border-t border-steel-deep pt-6 lg:flex-row lg:items-center lg:justify-between lg:gap-6">
           <p className="font-mono text-mono-xs text-steel-light">{LABEL}</p>

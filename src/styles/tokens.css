@@ -50,6 +50,11 @@
   --text-display-xl--line-height: 1.05;
   --text-display-xl--letter-spacing: -0.02em;
 
+  /* §4.7 — the hero name, a step above display-xl and specific to that block. */
+  --text-name: clamp(56px, 12vw, 160px);
+  --text-name--line-height: 0.92;
+  --text-name--letter-spacing: -0.03em;
+
   --text-display-lg: clamp(32px, 17.88px + 2.941vw, 48px);
   --text-display-lg--line-height: 1.1;
   --text-display-lg--letter-spacing: -0.02em;
@@ -106,6 +111,15 @@
   --radius-btn: 12px; /* §4.2 */
   --radius-pill: 999px; /* §4.4 */
 
+  /* -- §4.7 Hero portrait ------------------------------------------------
+     §4.7 sizes the photo off viewport height so it stays an accent and the
+     name stays dominant. Bounded by width too: the name scales with vw, so a
+     purely vh-based portrait grows disproportionately tall on short-and-wide
+     windows and rides up over the eyebrow. Capped near the asset's own 577px
+     so it is never upscaled past its native resolution. */
+  --size-hero-photo: clamp(220px, min(42vh, 32vw), 440px);
+  --size-hero-photo-sm: clamp(180px, 30vh, 240px);
+
   /* -- §4.5 "available" status pulse ------------------------------------- */
   --animate-status: status-pulse 2.6s ease-in-out infinite;
 
@@ -128,6 +142,45 @@
     var(--color-steel-deep) 45%,
     var(--color-onyx) 100%
   );
+
+  /* -- §4.7 Portrait duotone --------------------------------------------
+     Tint layer for `mix-blend-mode: color`: the blend takes lightness from
+     the greyscaled photo underneath and hue/saturation from here, so the
+     portrait lands in the same palette as the rest of the page. */
+  --gradient-duotone: linear-gradient(
+    135deg,
+    var(--color-steel-deep) 0%,
+    var(--color-onyx) 100%
+  );
+
+  /* §4.7 specifies the bottom fade only: `to bottom, black 70%, transparent`.
+     That assumes a cutout. The supplied asset is a rectangular ID photo with
+     its own studio backdrop, so its other three edges draw hard lines — the
+     left one straight through the name it overlaps, and the top one a visible
+     seam against the hero. These extend §4.7's own principle ("melebur…, bukan
+     dipotong tegas") to the edges that actually show. Bottom stop stays at the
+     specified 70%. */
+  --mask-photo-fade: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 12%,
+    black 70%,
+    transparent 100%
+  );
+  --mask-photo-edge: linear-gradient(
+    to right,
+    transparent 0%,
+    black 30%,
+    black 93%,
+    transparent 100%
+  );
+
+  /* Saturation boost applied *after* the colour blend. Steel-deep is only ~20%
+     saturated, so a literal `mix-blend-mode: color` tint lands near-neutral and
+     the portrait still reads as plain black-and-white — the one outcome §4.7
+     explicitly rules out. This amplifies the tint the blend already produced,
+     so the hue stays exactly the palette's and no new colour is introduced. */
+  --duotone-saturation: 2.6;
 
   /* -- §5 Layering — the only z-index values allowed in this codebase ---- */
   --z-mesh: -1;
