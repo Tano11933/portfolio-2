@@ -75,6 +75,10 @@
   --text-mono-xs: 12px;
   --text-mono-xs--line-height: 1.4;
   --text-mono-xs--letter-spacing: 0.04em;
+  /* Deliberately no `--text-mono-xs--font-weight`: that makes the utility emit
+     `font-weight: var(--tw-font-weight, …)`, and the base h2/h3 rules already
+     set `--tw-font-weight`, so the heading weight would win through the
+     variable. The weight is pinned on `.font-mono` in index.css instead. */
 
   /* Ghost number watermark on the §4.3 process cards. §4.3 fixes the opacity
      (8–12%) but not the size; this keeps it well clear of display-xl so the

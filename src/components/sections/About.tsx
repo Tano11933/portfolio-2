@@ -1,4 +1,5 @@
 import halftone from '../../assets/images/gabriel-poster-halftone.webp'
+import halftoneMobile from '../../assets/images/gabriel-poster-halftone-mobile.webp'
 import { Section, SectionHeading } from '../layout/Section'
 import { Reveal } from '../motion/Reveal'
 
@@ -56,6 +57,9 @@ export function About() {
         <figure className="order-1 flex flex-col items-center gap-3 lg:order-none lg:items-end">
           <img
             src={halftone}
+            srcSet={`${halftoneMobile} 420w, ${halftone} 1039w`}
+            // Matches the max-widths on this element exactly.
+            sizes="(max-width: 767px) 180px, (max-width: 1279px) 200px, 280px"
             // Decorative callback: the hero portrait already identifies him and
             // the name is the page h1, so a second identical alt would just be
             // announced twice.

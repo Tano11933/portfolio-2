@@ -63,6 +63,19 @@
     @apply font-mono text-mono-xs;
   }
 
+  /* §2 gives mono a single utility/label role — it is always weight 400.
+     `font-mono` alone swaps the family but not the weight, so mono labels
+     written as headings (`// More work`, the footer column headings) inherited
+     500/600 from the h2/h3 rules above, which was both a visible weight
+     inconsistency and the only reason JetBrains Mono 500 was ever downloaded.
+     Pinned here rather than on the `text-mono-xs` token because that route
+     resolves through `--tw-font-weight`, which the heading rules already set.
+     Class specificity beats the element selectors above, and an explicit
+     `font-*` utility still overrides this. */
+  .font-mono {
+    font-weight: var(--font-weight-normal);
+  }
+
   /* Keyboard focus must stay visible on every interactive element; :focus-visible
      keeps pointer interaction clean. */
   :focus-visible {
