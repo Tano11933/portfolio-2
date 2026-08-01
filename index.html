@@ -10,6 +10,17 @@
       content="Gabriel Gaetano Onen Baskara — full-stack developer building production systems for real businesses. Laravel, React, Flutter, MySQL."
     />
 
+    <!--
+      Preload only the faces actually painted above the fold, measured against
+      the production build at 1440x900 and 360x740:
+        Clash Display 600 — GABRIEL / GAETANO and the navbar wordmark
+        Clash Display 500 — the positioning line under the name
+        Switzer 400       — hero subtext and nav labels
+        Switzer 600       — the two hero CTAs (desktop; below the fold at 360)
+      Switzer 500 is deliberately absent: the browser fetches it, but nothing
+      above the fold renders in it (first use is the trust bar). JetBrains Mono
+      is skipped too — the mono labels are small and not hero-critical.
+    -->
     <link
       rel="preload"
       href="/fonts/clash-display-600.woff2"
@@ -19,7 +30,21 @@
     />
     <link
       rel="preload"
+      href="/fonts/clash-display-500.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
       href="/fonts/switzer-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/switzer-600.woff2"
       as="font"
       type="font/woff2"
       crossorigin

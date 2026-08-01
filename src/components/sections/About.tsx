@@ -1,4 +1,4 @@
-import halftone from '../../assets/images/gabriel-poster-halftone.png'
+import halftone from '../../assets/images/gabriel-poster-halftone.webp'
 import { Section, SectionHeading } from '../layout/Section'
 import { Reveal } from '../motion/Reveal'
 
@@ -60,8 +60,9 @@ export function About() {
             // the name is the page h1, so a second identical alt would just be
             // announced twice.
             alt=""
-            width={433}
-            height={510}
+            width={1039}
+            height={1224}
+            // Well below the fold — stays lazy, unlike the hero portrait.
             loading="lazy"
             decoding="async"
             className="w-full max-w-[180px] lg:max-w-[200px] xl:max-w-[280px]"

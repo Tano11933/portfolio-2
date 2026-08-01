@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import portrait from '../../assets/images/gabriel-duotone.png'
+import portrait from '../../assets/images/gabriel-duotone.webp'
 import { cx } from '../../lib/cx'
 
 /**
@@ -32,8 +32,13 @@ export function HeroPortrait({ className }: { className?: string }) {
         // The name sits beside this at display size, so the portrait is
         // identifying rather than informational — short alt, no "photo of".
         alt="Gabriel Gaetano Onen Baskara"
-        width={433}
-        height={510}
+        width={1039}
+        height={1224}
+        // This is the LCP element. Eager + high priority is stated explicitly
+        // rather than relied on as the default, so a later shared-image
+        // refactor can't quietly hand it a lazy default.
+        loading="eager"
+        fetchPriority="high"
         decoding="async"
         className="block h-full w-full object-contain object-bottom"
       />
