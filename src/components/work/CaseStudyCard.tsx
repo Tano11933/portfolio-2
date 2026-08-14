@@ -1,7 +1,9 @@
+import { PROJECT_GALLERIES } from '../../data/galleries'
 import type { Project } from '../../data/projects'
 import { cx } from '../../lib/cx'
 import { Card, type CardVariant } from '../ui/Card'
 import { Tag } from '../ui/Tag'
+import { ProjectGallery } from './ProjectGallery'
 
 /**
  * Featured case study — the fixed CONTENT-STRATEGY §5 block order, as a
@@ -40,6 +42,10 @@ export function CaseStudyCard({
             ))}
           </ul>
         </header>
+
+        {/* §4.9 — screenshots introduce the project, then the detail blocks
+            below explain it. 320px per §4.9. */}
+        <ProjectGallery items={PROJECT_GALLERIES[project.slug] ?? []} height={320} className="mt-5" />
 
         <dl className="mt-5 grid gap-5 lg:grid-cols-2 lg:gap-6">
           <div>

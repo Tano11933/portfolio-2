@@ -1,0 +1,170 @@
+/* DESIGN-SYSTEM §4.9 — AccordionGallery.
+   Colours arrive as CSS custom properties set inline by the component, so the
+   caller can pass `var(--color-steel-light)` straight through and the values
+   stay tokenised rather than being resolved to hex in JS. */
+
+.ag {
+  --ag-gap: 4px;
+  display: flex;
+  gap: var(--ag-gap);
+  width: 100%;
+  height: var(--ag-height);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--ag-overlay);
+}
+
+.ag__panel {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--ag-overlay) 88%, var(--ag-accent));
+  transition:
+    flex-grow 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 520ms ease;
+  filter: grayscale(var(--ag-gray, 1)) contrast(1.02);
+}
+
+/* The active panel takes the lion's share of the row and drops the desaturation. */
+.ag__panel[data-active='true'] {
+  flex-grow: 5;
+  filter: grayscale(0) contrast(1);
+}
+
+.ag__panel:focus-visible {
+  outline: 2px solid var(--ag-accent);
+  outline-offset: -2px;
+}
+
+.ag__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Collapsed panels are a narrow slice of a ~2.2-aspect capture. Anchoring
+     left shows the logo/sidebar edge, which identifies the screen; centring
+     showed an arbitrary mid-page sliver that read as noise. */
+  object-position: left top;
+  transition:
+    object-position 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ag__panel[data-active='true'] .ag__img {
+  object-position: center top;
+}
+
+/* Portrait screenshots (phone captures) are ~0.47 aspect against ~2.2 for web
+   captures. Cropping those to fill would show a sliver of the middle, so they
+   are contained and centred on a plinth instead — the panel geometry stays
+   uniform either way. Set from the image's own intrinsic size on load, so
+   screenshots dropped in later are handled without touching the data. */
+.ag__panel[data-fit='contain'] .ag__img {
+  object-fit: contain;
+  object-position: center;
+  padding: 10px 0;
+}
+
+.ag__panel[data-fit='contain'] {
+  background:
+    radial-gradient(
+      ellipse at 50% 100%,
+      color-mix(in srgb, var(--ag-accent) 22%, transparent),
+      transparent 70%
+    ),
+    color-mix(in srgb, var(--ag-overlay) 82%, var(--ag-accent));
+}
+
+/* Scrim + label, only on the open panel. Collapsed panels stay clean rather
+   than carrying rotated text that would be unreadable at their width. */
+.ag__label {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-5) var(--spacing-4) var(--spacing-3);
+  text-align: left;
+  background: linear-gradient(to top, var(--ag-overlay), transparent);
+  color: var(--ag-text);
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-xs);
+  line-height: var(--text-mono-xs--line-height);
+  letter-spacing: var(--text-mono-xs--letter-spacing);
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 380ms ease,
+    transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.ag__panel[data-active='true'] .ag__label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ag__label::before {
+  content: '';
+  flex: 0 0 auto;
+  width: var(--spacing-3);
+  height: 1px;
+  background: var(--ag-accent);
+}
+
+/* Stacked layout for narrow viewports. 480px is this project's md edge
+   (DESIGN-SYSTEM §6) rather than the 520px React Bits ships, so the gallery
+   changes shape on the same line as the rest of the site. */
+@media (width < 480px) {
+  .ag {
+    flex-direction: column;
+    height: auto;
+  }
+
+  /* Collapsed rows are deliberately short. Stacking six or seven panels at any
+     meaningful height made the gallery ~1200px tall inside a single card; at
+     56px they read as a labelled list of shots with the open one expanded,
+     which is both compact and clearer than a column of cropped slivers. */
+  .ag__panel {
+    flex: 1 1 auto;
+    height: 56px;
+    transition:
+      height 500ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 420ms ease;
+  }
+
+  .ag__panel[data-active='true'] {
+    height: calc(var(--ag-height) * 0.72);
+  }
+
+  /* Wide enough to carry the label on every row, so a collapsed panel says
+     what it is instead of showing an unreadable strip of screenshot. */
+  .ag__label {
+    opacity: 1;
+    transform: none;
+    padding: var(--spacing-2) var(--spacing-4);
+    background: linear-gradient(
+      to top,
+      var(--ag-overlay),
+      color-mix(in srgb, var(--ag-overlay) 70%, transparent)
+    );
+  }
+
+  .ag__panel[data-active='true'] .ag__label {
+    background: linear-gradient(to top, var(--ag-overlay), transparent);
+    padding: var(--spacing-5) var(--spacing-4) var(--spacing-3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ag__panel,
+  .ag__img,
+  .ag__label {
+    transition-duration: 0.01ms !important;
+  }
+}

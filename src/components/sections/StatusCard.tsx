@@ -5,7 +5,7 @@ import { Tag } from '../ui/Tag'
 /** CONTENT-STRATEGY §2 — updated badge wording and stack (Express.js added). */
 const STATUS = 'Open to full-time roles & freelance projects'
 const STACK = ['Laravel', 'Express.js', 'React', 'Flutter', 'MySQL']
-const BUILDING = 'EagleJeans — production tracking PWA'
+const BUILDING = 'EagleJeans - production tracking PWA'
 
 /**
  * DESIGN-SYSTEM §4.5, as revised by §4.7.

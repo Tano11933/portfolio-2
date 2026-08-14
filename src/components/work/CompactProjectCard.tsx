@@ -1,6 +1,8 @@
+import { PROJECT_GALLERIES } from '../../data/galleries'
 import type { Project } from '../../data/projects'
 import { Card } from '../ui/Card'
 import { Tag } from '../ui/Tag'
+import { ProjectGallery } from './ProjectGallery'
 
 /**
  * Condensed card for the "More Work" grid (CONTENT-STRATEGY §5, "grid lebih
@@ -22,6 +24,10 @@ export function CompactProjectCard({ project }: { project: Project }) {
             ))}
           </ul>
         </div>
+
+        {/* Shorter than the 320px on the featured cards, so these stay
+            secondary to the case studies rather than competing with them. */}
+        <ProjectGallery items={PROJECT_GALLERIES[project.slug] ?? []} height={200} />
 
         <p className="text-body-md text-platinum-muted">{project.problem}</p>
 

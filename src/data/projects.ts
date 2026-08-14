@@ -65,10 +65,6 @@ export const FEATURED_PROJECTS: Project[] = [
     demonstrates:
       'Comfort building complex multi-role systems across both platforms simultaneously.',
   },
-]
-
-/** §5 — the remaining projects, shown in the smaller "More Work" grid. */
-export const MORE_PROJECTS: Project[] = [
   {
     slug: 'bookhive',
     name: 'BookHive',
@@ -85,6 +81,10 @@ export const MORE_PROJECTS: Project[] = [
     demonstrates:
       'Clean, focused execution on a smaller-scope system — good contrast to the bigger case studies.',
   },
+]
+
+/** §5 — the remaining projects, shown in the smaller "More Work" grid. */
+export const MORE_PROJECTS: Project[] = [
   {
     slug: 't2kav-gym',
     name: 'T2KAV Gym',

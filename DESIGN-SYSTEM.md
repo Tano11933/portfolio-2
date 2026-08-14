@@ -128,6 +128,19 @@ Foto muncul sekali lagi di halaman, tapi dengan treatment berbeda dari hero — 
 - **Mobile (`sm`):** portrait pindah ke atas paragraf About, ukuran diperkecil lagi (`max-width: 180px`), center-aligned — bukan di samping teks.
 - **Jangan** tambahkan animasi/interaksi berat di sini — section About lebih tenang dibanding hero, cukup scroll-reveal fade sederhana kalau ada.
 
+### 4.9 Project Photo Gallery — AccordionGallery (React Bits)
+Dipakai di dalam tiap case study card di Featured Work (§5 CONTENT-STRATEGY: EagleJeans, ArthaBooks, ReuseMart) untuk menampilkan beberapa screenshot per project, menggantikan satu gambar statis.
+
+- **Pemetaan warna ke token** (jangan pakai default component-nya):
+  - `accentColor` → `--color-steel-light` (`#7C93A3`) — di atas panel gelap
+  - `overlayColor` → `--color-onyx` (`#0A0A0A`)
+  - `textColor` → `--color-platinum` (`#E5E4E2`)
+- **`grayscale: true`** (default component) — **pertahankan**, jangan dimatikan. Ini kebetulan pas sekali dengan tema Engineered Metal Flow: panel collapsed desaturated, panel aktif full color — jadi terasa seperti bagian dari sistem visual situs, bukan komponen tempel.
+- **Ukuran:** `height: 320` (desktop), turun ke tinggi lebih pendek atau pakai perilaku bawaan komponen di mobile (component sudah auto-stack vertical di bawah 520px — cukup dekat dengan breakpoint `sm`/`md` kita, tidak perlu dipaksa sama persis).
+- **`trigger: "hover"`** di desktop wajar, tapi pastikan tap/focus tetap berfungsi di mobile (sudah ditangani bawaan oleh komponen — konfirmasi saja saat implementasi, jangan asumsi).
+- **Performance — perhatikan ini:** GSAP adalah dependency baru yang lumayan besar. Section Featured Work ada di bawah hero (bukan LCP), jadi **wajib lazy-load** komponen ini (`React.lazy` + `Suspense`, atau dynamic import) supaya GSAP tidak ikut ke initial bundle yang mempengaruhi skor Lighthouse yang sudah kita optimasi ke 100/86. Jangan sampai regresi gara-gara komponen ini.
+- **Sumber gambar:** komponen butuh beberapa foto per project (bukan cuma 1 screenshot seperti sekarang) — ini belum ada asetnya, perlu disiapkan terpisah per project sebelum implementasi.
+
 ---
 
 ## 5. Layering (z-index)

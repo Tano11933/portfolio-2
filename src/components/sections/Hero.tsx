@@ -12,7 +12,7 @@ const EYEBROW_SHORT = 'Open to opportunities — Yogyakarta / Jakarta'
 /** §2 supporting headline, option C (the recommended one). */
 const POSITIONING = 'Full-stack developer building production systems for real businesses.'
 const SUBTEXT =
-  'Informatics undergraduate at Atma Jaya Yogyakarta, currently building production software for garment manufacturing while finishing a thesis on financial systems. I work across web, mobile, and database — from Laravel and Express.js to React and Flutter, end to end.'
+  'Informatics undergraduate at Atma Jaya Yogyakarta, currently building production software for garment manufacturing while finishing a thesis on financial systems. I work across web, mobile, and database from Laravel and Express.js to React and Flutter, end to end.'
 
 /**
  * DESIGN-SYSTEM §4.7 — Name-Behind-Photo as a 1.3fr / 1fr asymmetric grid.
