@@ -37,14 +37,23 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     const el = document.querySelector<HTMLElement>(target)
     if (!el) return
 
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(el, { offset: 0 })
-    } else {
-      el.scrollIntoView({ behavior: 'auto', block: 'start' })
+    const executeScroll = () => {
+      if (lenisRef.current) {
+        lenisRef.current.scrollTo(el, { offset: 0 })
+      } else {
+        el.scrollIntoView({ behavior: 'auto', block: 'start' })
+      }
+
+      if (target.startsWith('#')) {
+        window.history.pushState(null, '', target)
+      }
+
+      // Move keyboard focus with the viewport, otherwise tabbing after a nav
+      // click resumes from the top of the document.
+      el.focus({ preventScroll: true })
     }
-    // Move keyboard focus with the viewport, otherwise tabbing after a nav
-    // click resumes from the top of the document.
-    el.focus({ preventScroll: true })
+
+    requestAnimationFrame(executeScroll)
   }, [])
 
   const setLocked = useCallback((locked: boolean) => {

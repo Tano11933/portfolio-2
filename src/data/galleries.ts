@@ -4,6 +4,16 @@ import type { GalleryItem } from '../components/work/AccordionGallery'
    re-encoded from PNG to WebP (9.1 MB → 0.92 MB) because even lazy-loaded they
    would otherwise dwarf every other asset on the page. */
 
+import AB1 from '../assets/images/projects/AB1.webp'
+import AB2 from '../assets/images/projects/AB2.webp'
+import AB3 from '../assets/images/projects/AB3.webp'
+import AB4 from '../assets/images/projects/AB4.webp'
+import AB5 from '../assets/images/projects/AB5.webp'
+import AB6 from '../assets/images/projects/AB6.webp'
+import AB7 from '../assets/images/projects/AB7.webp'
+import AB8 from '../assets/images/projects/AB8.webp'
+import AB9 from '../assets/images/projects/AB9.webp'
+
 import BK1 from '../assets/images/projects/BK1.webp'
 import BK2 from '../assets/images/projects/BK2.webp'
 import BK3 from '../assets/images/projects/BK3.webp'
@@ -43,8 +53,17 @@ export const PROJECT_GALLERIES: Record<string, GalleryItem[]> = {
   //   { image: EJ1, label: 'QR scan per stage', alt: 'EagleJeans production stage scanner' },
   eaglejeans: [],
 
-  // TODO: add ArthaBooks screenshots — same { image, label, alt } shape.
-  arthabooks: [],
+  arthabooks: [
+    { image: AB1, label: 'Sign-in', alt: 'ArthaBooks sign-in screen with email and password fields' },
+    { image: AB2, label: 'Dashboard overview', alt: 'ArthaBooks dashboard with financial summary cards and charts' },
+    { image: AB3, label: 'Transactions', alt: 'ArthaBooks transaction list with filters, categories, and status badges' },
+    { image: AB7, label: 'Chart of accounts', alt: 'ArthaBooks chart of accounts table for managing account codes and categories' },
+    { image: AB8, label: 'Opening balance', alt: 'ArthaBooks opening balance page for setting initial asset and liability balances' },
+    { image: AB6, label: 'Role & access', alt: 'ArthaBooks role and permission management screen for admin and owner access' },
+    { image: AB4, label: 'Profit & loss', alt: 'ArthaBooks profit and loss report page with totals and account summaries' },
+    { image: AB5, label: 'CALK', alt: 'ArthaBooks notes to the financial statements (CALK) report page' },
+    { image: AB9, label: 'Balance sheet', alt: 'ArthaBooks balance sheet report showing assets, liabilities, and equity totals' },
+  ],
 
   reusemart: [
     { image: RE3, label: 'Marketplace home', alt: 'ReuseMart storefront with product categories' },

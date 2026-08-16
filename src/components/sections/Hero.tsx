@@ -79,7 +79,7 @@ export function Hero() {
               for source order on mobile; `order` restores the visual order, and
               the portrait still paints above the name because it is the later
               *positioned* sibling in this stacking context. */}
-          <div className="relative order-2 lg:order-none lg:col-start-2 lg:row-start-2">
+          <div className="relative order-2 mx-auto w-full lg:order-none lg:col-start-2 lg:row-start-2 lg:mx-0">
             {/* Nudged left so the silhouette actually reaches the name. The
                 cut-out is only full-width at the shoulders; at the height
                 GAETANO sits it is just the head, so the figure's own edge
@@ -94,21 +94,17 @@ export function Hero() {
                 Sits on the portrait wrapper rather than the motion element:
                 Motion writes `transform` inline and would clobber a Tailwind
                 translate on the same node. */}
-            <motion.div {...rise(0.16, 24)} className="h-full">
-              <HeroPortrait className="h-[var(--size-hero-photo-sm)] w-fit lg:h-full lg:w-full xl:-translate-x-[18%]" />
+            <motion.div {...rise(0.16, 24)} className="flex justify-center lg:block lg:h-full">
+              <HeroPortrait className="mx-auto h-[var(--size-hero-photo-sm)] w-fit lg:h-full lg:w-full xl:-translate-x-[18%]" />
             </motion.div>
 
             {/* §4.7 — card floats on the portrait's lower body (Armory pattern),
                 not beside the text.
-                Anchored as a fraction of the photo column rather than a fixed
-                offset from its left edge, so it tracks the torso: the silhouette
-                is narrow at collar height and its suit is near-onyx, so a
-                left-edge anchor put the card's left third over what reads as
-                empty background. 38%/right-0 lands its left edge on the visible
-                chest at both lg and xl, and sizes the card from the remaining
-                column width instead of a fixed px value. */}
-            <div className="absolute right-0 bottom-7 left-[38%] z-float hidden lg:block">
-              <StatusCard />
+                Keep it off mobile and tablet because the hero already feels tight
+                there and the card would cover the face. Only on large screens is
+                there enough space to anchor it cleanly to the portrait. */}
+            <div className="absolute z-float hidden lg:bottom-7 lg:left-[38%] lg:right-0 lg:block">
+              <StatusCard className="max-w-[220px] lg:max-w-none" />
             </div>
           </div>
 

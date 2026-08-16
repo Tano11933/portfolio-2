@@ -53,7 +53,7 @@ export function HeroPortrait({ className }: { className?: string }) {
         loading="eager"
         fetchPriority="high"
         decoding="async"
-        className="block h-full w-full object-contain object-bottom"
+        className="block h-full w-full object-contain object-bottom md:mx-auto"
       />
     </div>
   )
