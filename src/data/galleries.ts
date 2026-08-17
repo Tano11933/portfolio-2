@@ -14,6 +14,16 @@ import AB7 from '../assets/images/projects/AB7.webp'
 import AB8 from '../assets/images/projects/AB8.webp'
 import AB9 from '../assets/images/projects/AB9.webp'
 
+import EG1 from '../assets/images/projects/EG1.webp'
+import EG2 from '../assets/images/projects/EG2.webp'
+import EG3 from '../assets/images/projects/EG3.webp'
+import EG4 from '../assets/images/projects/EG4.webp'
+import EG5 from '../assets/images/projects/EG5.webp'
+import EG6 from '../assets/images/projects/EG6.webp'
+import EG7 from '../assets/images/projects/EG7.webp'
+import EG8 from '../assets/images/projects/EG8.webp'
+import EG9 from '../assets/images/projects/EG9.webp'
+
 import BK1 from '../assets/images/projects/BK1.webp'
 import BK2 from '../assets/images/projects/BK2.webp'
 import BK3 from '../assets/images/projects/BK3.webp'
@@ -41,17 +51,19 @@ import T3 from '../assets/images/projects/T2KAV-3.webp'
 /**
  * Per-project screenshots for the §4.9 gallery, keyed by the project slug in
  * `projects.ts`. Labels describe what each capture actually shows.
- *
- * EagleJeans and ArthaBooks are intentionally empty — the screenshots are being
- * supplied separately. The gallery renders nothing for an empty array, so the
- * cards stay correct until then; drop the images into
- * `src/assets/images/projects/` and fill the arrays in the same shape as below.
  */
 export const PROJECT_GALLERIES: Record<string, GalleryItem[]> = {
-  // TODO: add EagleJeans screenshots — same { image, label, alt } shape.
-  // Example:
-  //   { image: EJ1, label: 'QR scan per stage', alt: 'EagleJeans production stage scanner' },
-  eaglejeans: [],
+  eaglejeans: [
+    { image: EG1, label: 'Sign-in', alt: 'EagleJeans staff sign-in screen with email and password fields' },
+    { image: EG2, label: 'Owner dashboard', alt: 'EagleJeans owner dashboard showing total orders, active sewing processes, and work status cards' },
+    { image: EG3, label: 'Production report', alt: 'EagleJeans production report page with monthly summary and completed order metrics' },
+    { image: EG4, label: 'Order list', alt: 'EagleJeans order list page for tracking production notes by process and status' },
+    { image: EG5, label: 'Order detail', alt: 'EagleJeans order detail page with item list, production status, and action buttons' },
+    { image: EG6, label: 'Production ticket', alt: 'EagleJeans production ticket sheet with size breakdown, material info, and QR code' },
+    { image: EG7, label: 'Scan barcode', alt: 'EagleJeans barcode scan interface for matching a production order to a QR code' },
+    { image: EG8, label: 'Process history', alt: 'EagleJeans production history page showing product detail, stage updates, and process status' },
+    { image: EG9, label: 'Welcome login', alt: 'EagleJeans welcome login screen for returning staff to the production tracking app' },
+  ],
 
   arthabooks: [
     { image: AB1, label: 'Sign-in', alt: 'ArthaBooks sign-in screen with email and password fields' },
