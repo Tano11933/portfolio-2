@@ -2,9 +2,9 @@ import { motion, useReducedMotion } from 'motion/react'
 import { cx } from '../../lib/cx'
 import { Tag } from '../ui/Tag'
 
-/** CONTENT-STRATEGY §2 — updated badge wording and stack (Express.js added). */
+/** CONTENT-STRATEGY §2 — full-stack developer positioning. */
 const STATUS = 'Open to full-time roles & freelance projects'
-const STACK = ['Laravel', 'Express.js', 'React', 'Flutter', 'MySQL']
+const STACK = ['Laravel', 'Express.js', 'TypeScript', 'Go', 'PostgreSQL', 'Redis']
 const BUILDING = 'EagleJeans - production tracking PWA'
 
 /**
