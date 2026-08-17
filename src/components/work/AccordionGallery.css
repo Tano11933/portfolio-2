@@ -79,6 +79,12 @@
     color-mix(in srgb, var(--ag-overlay) 82%, var(--ag-accent));
 }
 
+/* Web screenshots (cover) become contain when active to show full image without cropping. */
+.ag__panel[data-active='true'][data-fit='cover'] .ag__img {
+  object-fit: contain;
+  object-position: center;
+}
+
 /* Scrim + label, only on the open panel. Collapsed panels stay clean rather
    than carrying rotated text that would be unreadable at their width. */
 .ag__label {
