@@ -1,11 +1,11 @@
 /** CONTENT-STRATEGY §7 — grouped, not a flat list. */
 export const SKILL_GROUPS = [
-  { group: 'Frontend', items: ['HTML', 'CSS', 'JavaScript', 'React'] },
-  { group: 'Backend', items: ['PHP', 'Laravel', 'REST API'] },
+  { group: 'Frontend', items: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React'] },
+  { group: 'Backend', items: ['PHP', 'Laravel', 'Express.js', 'Go', 'REST API'] },
   { group: 'Mobile', items: ['Dart', 'Flutter'] },
-  { group: 'Database', items: ['MySQL', 'SQL'] },
-  { group: 'Foundations', items: ['C', 'Java'] },
-  { group: 'Tools & Practice', items: ['Git & GitHub', 'Technical documentation & reporting'] },
+  { group: 'Database', items: ['MySQL', 'PostgreSQL', 'Redis', 'SQL'] },
+  { group: 'Foundations', items: ['C', 'Java', 'System design'] },
+  { group: 'Tools & Practice', items: ['Git & GitHub', 'Technical documentation & reporting', 'Testing & debugging'] },
 ] as const
 
 /**
