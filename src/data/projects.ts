@@ -22,8 +22,8 @@ export const FEATURED_PROJECTS: Project[] = [
     name: 'EagleJeans',
     problem:
       'A garment manufacturing client needed to track orders through 13 production stages with no visibility into bottlenecks.',
-    role: 'Solo developer. Laravel PWA, QR-based tracking, role-based access (Owner, Front Office, Production Staff).',
-    stack: ['Laravel', 'PWA', 'MySQL'],
+    role: 'Backend developer. Laravel APIs, QR-based production tracking, and role-based access (Owner, Front Office, Production Staff).',
+    stack: ['Laravel', 'PHP', 'MySQL', 'REST API'],
     features: [
       'QR scanning per production stage',
       'Dual-mode auth — email for owner, username for staff',
