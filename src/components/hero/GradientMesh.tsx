@@ -7,7 +7,7 @@ import {
   useTransform,
   type MotionValue,
 } from 'motion/react'
-import { useEffect, type CSSProperties, type RefObject } from 'react'
+import { useEffect, useState, type CSSProperties, type RefObject } from 'react'
 
 type Props = {
   /** The hero element, used as the scroll-progress target. */
@@ -40,8 +40,26 @@ function useShift(
  * Under prefers-reduced-motion the blobs render at rest and nothing subscribes
  * to scroll or pointer events.
  */
+function useChromeDesktopSafeMode() {
+  return (
+    typeof window !== 'undefined' &&
+    typeof navigator !== 'undefined' &&
+    /Chrome\//.test(navigator.userAgent) &&
+    !/Edg|OPR|SamsungBrowser/.test(navigator.userAgent) &&
+    window.matchMedia('(pointer: fine)').matches &&
+    window.innerWidth >= 1024
+  )
+}
+
 export function GradientMesh({ scrollTargetRef }: Props) {
   const prefersReduced = useReducedMotion()
+  const chromeSafeMode = useChromeDesktopSafeMode()
+  const [isReady, setIsReady] = useState(false)
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setIsReady(true))
+    return () => window.cancelAnimationFrame(frame)
+  }, [])
 
   const { scrollYProgress } = useScroll({
     target: scrollTargetRef,
@@ -53,10 +71,16 @@ export function GradientMesh({ scrollTargetRef }: Props) {
   const mouseX = useSpring(pointerX, { stiffness: 40, damping: 22, mass: 0.7 })
   const mouseY = useSpring(pointerY, { stiffness: 40, damping: 22, mass: 0.7 })
 
+  const enableMotion =
+    isReady &&
+    !prefersReduced &&
+    !chromeSafeMode &&
+    window.matchMedia('(min-width: 1024px) and (pointer: fine)').matches
+
   useEffect(() => {
-    if (prefersReduced) return
+    if (prefersReduced || !isReady) return
     // §6: pointer parallax is desktop-only, and meaningless on touch.
-    const mq = window.matchMedia('(min-width: 768px) and (pointer: fine)')
+    const mq = window.matchMedia('(min-width: 1024px) and (pointer: fine)')
     if (!mq.matches) return
 
     const onMove = (event: PointerEvent) => {
@@ -65,7 +89,7 @@ export function GradientMesh({ scrollTargetRef }: Props) {
     }
     window.addEventListener('pointermove', onMove, { passive: true })
     return () => window.removeEventListener('pointermove', onMove)
-  }, [prefersReduced, pointerX, pointerY])
+  }, [isReady, prefersReduced, pointerX, pointerY])
 
   const steelX = useShift(mouseX, scrollYProgress, 2.5, -8)
   const steelY = useShift(mouseY, scrollYProgress, 1.8, 15)
@@ -112,9 +136,9 @@ export function GradientMesh({ scrollTargetRef }: Props) {
               // A held core stop before the falloff, otherwise 96px of blur
               // dilutes the blob into near-invisibility.
               backgroundImage: `radial-gradient(circle at center, ${blob.color} 0%, ${blob.color} 32%, transparent 70%)`,
-              filter: 'blur(var(--blur-mesh))',
-              willChange: prefersReduced ? undefined : 'transform',
-              ...(prefersReduced ? {} : { x: blob.x, y: blob.y }),
+              filter: enableMotion ? 'blur(36px)' : 'none',
+              willChange: enableMotion ? 'transform' : 'auto',
+              ...(enableMotion ? { x: blob.x, y: blob.y } : {}),
             } as CSSProperties
           }
           className={`absolute rounded-full ${blob.className}`}

@@ -20,6 +20,13 @@ export function Navbar() {
   const { scrollY } = useScroll()
   const { scrollTo, setLocked } = useSmoothScroll()
   const prefersReduced = useReducedMotion()
+  const chromeSafeMode =
+    typeof window !== 'undefined' &&
+    typeof navigator !== 'undefined' &&
+    /Chrome\//.test(navigator.userAgent) &&
+    !/Edg|OPR|SamsungBrowser/.test(navigator.userAgent) &&
+    window.matchMedia('(pointer: fine)').matches &&
+    window.innerWidth >= 1024
   const triggerRef = useRef<HTMLButtonElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
 
@@ -69,7 +76,7 @@ export function Navbar() {
     [scrollTo],
   )
 
-  const fade = prefersReduced ? { duration: 0 } : { duration: 0.32, ease: [0.22, 1, 0.36, 1] as const }
+  const fade = prefersReduced || chromeSafeMode ? { duration: 0 } : { duration: 0.32, ease: [0.22, 1, 0.36, 1] as const }
 
   return (
     <>
@@ -85,8 +92,8 @@ export function Navbar() {
         className={cx(
           'fixed inset-x-0 top-0 z-nav transition-[background-color,box-shadow,backdrop-filter] duration-300',
           scrolled
-            ? 'bg-onyx/85 shadow-nav backdrop-blur-nav'
-            : 'bg-transparent shadow-none backdrop-blur-none',
+            ? 'bg-onyx/90 shadow-nav'
+            : 'bg-transparent shadow-none',
         )}
       >
         <div className="shell flex h-8 items-center justify-between gap-5">

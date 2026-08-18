@@ -19,18 +19,25 @@ const BUILDING = 'EagleJeans - production tracking PWA'
  */
 export function StatusCard({ className }: { className?: string }) {
   const prefersReduced = useReducedMotion()
+  const chromeSafeMode =
+    typeof window !== 'undefined' &&
+    typeof navigator !== 'undefined' &&
+    /Chrome\//.test(navigator.userAgent) &&
+    !/Edg|OPR|SamsungBrowser/.test(navigator.userAgent) &&
+    window.matchMedia('(pointer: fine)').matches &&
+    window.innerWidth >= 1024
 
   return (
     <motion.div
-      initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: 16 }}
+      initial={prefersReduced || chromeSafeMode ? { opacity: 0 } : { opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={
-        prefersReduced
-          ? { duration: 0.3 }
+        prefersReduced || chromeSafeMode
+          ? { duration: 0.2 }
           : { duration: 0.7, delay: 0.55, ease: [0.22, 1, 0.36, 1] }
       }
       className={cx(
-        'gradient-ring-static rounded-card bg-onyx/80 p-4 shadow-card backdrop-blur-glass',
+        'gradient-ring-static rounded-card bg-onyx/90 p-4 shadow-card',
         className,
       )}
     >

@@ -34,19 +34,26 @@ export function Hero() {
   const heroRef = useRef<HTMLElement>(null)
   const { scrollTo } = useSmoothScroll()
   const prefersReduced = useReducedMotion()
+  const chromeSafeMode =
+    typeof window !== 'undefined' &&
+    typeof navigator !== 'undefined' &&
+    /Chrome\//.test(navigator.userAgent) &&
+    !/Edg|OPR|SamsungBrowser/.test(navigator.userAgent) &&
+    window.matchMedia('(pointer: fine)').matches &&
+    window.innerWidth >= 1024
 
   const goTo = (event: React.MouseEvent, href: string) => {
     event.preventDefault()
     scrollTo(href)
   }
 
-  const rise = (delay: number, distance = 18) =>
-    prefersReduced
-      ? { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { duration: 0.35 } }
+  const rise = (delay: number) =>
+    prefersReduced || chromeSafeMode
+      ? { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { duration: 0.2 } }
       : {
-          initial: { opacity: 0, y: distance },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
+          initial: { opacity: 0 },
+          animate: { opacity: 1 },
+          transition: { duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] as const },
         }
 
   return (
@@ -94,7 +101,7 @@ export function Hero() {
                 Sits on the portrait wrapper rather than the motion element:
                 Motion writes `transform` inline and would clobber a Tailwind
                 translate on the same node. */}
-            <motion.div {...rise(0.16, 24)} className="flex justify-center lg:block lg:h-full">
+            <motion.div {...rise(0.16)} className="flex justify-center lg:block lg:h-full">
               <HeroPortrait className="mx-auto h-[var(--size-hero-photo-sm)] w-fit lg:h-full lg:w-full xl:-translate-x-[18%]" />
             </motion.div>
 
@@ -118,7 +125,7 @@ export function Hero() {
                 being later in tree order it landed *above* the photo, which is
                 the inverse of what §4.7 asks for. */}
             <motion.h1
-              {...rise(0.08, 24)}
+              {...rise(0.08)}
               className="font-display text-name font-semibold text-platinum uppercase"
             >
               <span className="block">Gabriel</span>
