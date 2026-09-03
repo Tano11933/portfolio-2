@@ -21,17 +21,18 @@ export const FEATURED_PROJECTS: Project[] = [
     slug: 'eaglejeans',
     name: 'EagleJeans',
     problem:
-      'A garment manufacturing client needed to track orders through 13 production stages with no visibility into bottlenecks.',
-    role: 'Backend developer. Laravel APIs, QR-based production tracking, and role-based access (Owner, Front Office, Production Staff).',
-    stack: ['Laravel', 'PHP', 'MySQL', 'REST API'],
+      'A garment manufacturing client needed a reliable way to track garments through 15 production stages and prevent bottlenecks, race conditions, and unauthorized access.',
+    role: 'Backend developer. Built the Laravel/Livewire PWA backend, organized business logic into 8 dedicated services, and implemented role-based access for 12 user roles with custom middleware and policy-based authorization.',
+    stack: ['Laravel', 'Livewire', 'PHP', 'MySQL', 'PWA'],
     features: [
-      'QR scanning per production stage',
-      'Dual-mode auth — email for owner, username for staff',
-      'Live queue display (TV antrian)',
-      'Automated data retention',
+      '15-step QR-code production workflow with transactional integrity, row-locking, and DB transactions',
+      '558 automated tests across 49 test files for role-based access and production workflows',
+      'Security audit fixes for stored XSS through unrestricted file upload and brute-forceable password reset',
+      'Query-plan-driven optimization that reduced the busiest report page from 45 to 12 queries and eliminated N+1 patterns',
+      'Shared validation rules and rate limiting for hardened file-upload and password-reset flows',
     ],
     demonstrates:
-      'Ability to design and ship a real multi-role production system for a live business, end to end.',
+      'Ability to design, secure, test, and optimize a production system for a live business, including concurrency-safe QR scanning and measurable database performance improvements.',
   },
   {
     slug: 'arthabooks',
