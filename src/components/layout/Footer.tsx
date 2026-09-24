@@ -61,7 +61,7 @@ export function Footer() {
             © {new Date().getFullYear()} {WORDMARK}
           </span>
           {/* §4.6 — matches the hero eyebrow in CONTENT-STRATEGY §2. */}
-          <span>Yogyakarta / Jakarta</span>
+          <span>Semarang / open to relocate</span>
         </div>
       </div>
     </footer>

@@ -9,7 +9,8 @@ import { Reveal } from '../motion/Reveal'
  * Display at display-md would be a wall of display type.
  *
  * Education sits small underneath as §6 asks — credibility, not a headline.
- * The graduation clause §6 leaves blank is omitted rather than invented.
+ * Education and experience lines are synced with the current CV (Sep 2026):
+ * graduate status and both professional roles, including the freelance work.
  *
  * DESIGN-SYSTEM §4.8 adds the halftone portrait beside the copy. The heading
  * moved above the two columns rather than beside them: §4.8 wants a 2-column
@@ -38,15 +39,18 @@ export function About() {
             <div className="flex flex-col gap-1">
               <dt className="font-mono text-mono-xs uppercase text-steel">Education</dt>
               <dd className="text-body-sm text-steel-deep">
-                Informatics undergraduate at Universitas Atma Jaya Yogyakarta (GPA 3.54)
+                Informatics graduate (S.Kom.) from Universitas Atma Jaya Yogyakarta — GPA 3.54/4.00
               </dd>
             </div>
 
-            {/* PRD §5 keeps the internship as an experience line, not a project card. */}
+            {/* PRD §5 keeps professional roles as experience lines, not project cards. */}
             <div className="flex flex-col gap-1">
               <dt className="font-mono text-mono-xs uppercase text-steel">Experience</dt>
               <dd className="text-body-sm text-steel-deep">
-                Internship at PT Aerotek Global Inovasi (Beehive Drones)
+                Freelance Backend Developer at Eagle Jeans Co. (Jun 2026 – Present)
+              </dd>
+              <dd className="text-body-sm text-steel-deep">
+                Software Developer Intern at PT Aerotek Global Inovasi, Beehive Drones (Jan – May 2026)
               </dd>
             </div>
           </dl>

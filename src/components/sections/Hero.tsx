@@ -7,12 +7,12 @@ import { Button } from '../ui/Button'
 import { useSmoothScroll } from '../../lib/smooth-scroll-context'
 
 /** CONTENT-STRATEGY §2 — copy is verbatim; §2 supplies both eyebrow lengths. */
-const EYEBROW = 'Open to full-time roles & freelance projects — Yogyakarta / Jakarta'
-const EYEBROW_SHORT = 'Open to opportunities — Yogyakarta / Jakarta'
+const EYEBROW = 'Open to full-time roles & freelance projects — Semarang / open to relocate'
+const EYEBROW_SHORT = 'Open to opportunities — Semarang / open to relocate'
 /** §2 supporting headline, option C (the recommended one). */
 const POSITIONING = 'Full-stack developer building production systems for real businesses.'
 const SUBTEXT =
-  'Informatics undergraduate at Atma Jaya Yogyakarta, currently building production software for garment manufacturing while finishing a thesis on financial systems. I ship full-stack solutions across web and mobile using Laravel, Express.js, TypeScript, Go, React, Flutter, PostgreSQL, and Redis.'
+  'Informatics graduate from Atma Jaya Yogyakarta with production experience shipping web and mobile apps end-to-end — most recently a garment-manufacturing tracking PWA used daily by 50-60 staff. I build with Laravel, Express.js, TypeScript, Go, React, Flutter, PostgreSQL, and Redis.'
 
 /**
  * DESIGN-SYSTEM §4.7 — Name-Behind-Photo as a 1.3fr / 1fr asymmetric grid.

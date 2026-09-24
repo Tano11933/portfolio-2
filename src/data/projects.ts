@@ -46,9 +46,25 @@ export const FEATURED_PROJECTS: Project[] = [
       'Role-based access — Admin/Staff/Owner, 13 permissions',
       '5 financial reports including CALK',
       'Payroll approval workflow and audit trail',
+      'User acceptance testing with 32 respondents across 10 SMEs — mean score 4.00/5.00',
     ],
     demonstrates:
-      'Deep understanding of both software architecture and domain rules (accounting standards, SAK EMKM) — validated through formal thesis defense.',
+      'Deep understanding of both software architecture and domain rules (accounting standards, SAK EMKM) — validated through formal thesis defense and testing with real SME users.',
+  },
+  {
+    slug: 'spotify-clone',
+    name: 'Spotify Clone',
+    problem:
+      'A personal project to build a music streaming platform end-to-end — production-grade auth, real-time features, and measurable catalog performance, rather than a tutorial CRUD build.',
+    role: 'Solo developer (personal project, in progress). Go 1.26 + Fiber v2 REST and WebSocket API, PostgreSQL 16 + Redis 7, React 19 + TypeScript frontend.',
+    stack: ['Go', 'Fiber', 'PostgreSQL', 'Redis', 'React', 'TypeScript'],
+    features: [
+      'Layered backend (handler → service → repository) with JWT access + refresh tokens (rotation) and bcrypt',
+      'Redis-based rate limiting and a WebSocket hub for real-time features',
+      'Redis caching for catalog endpoints — p95 < 50 ms in load tests with a ~98-100% cache-hit rate',
+    ],
+    demonstrates:
+      'Backend depth beyond the Laravel stack: Go service architecture, performance work with Redis, and a React 19 + TypeScript frontend built alongside the API.',
   },
   {
     slug: 'reusemart',
