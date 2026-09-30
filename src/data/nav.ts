@@ -7,6 +7,9 @@ export const NAV_ITEMS = [
 
 export const WORDMARK = 'Gabriel Gaetano'
 
+/** Full name, used in the footer and the accessible label of the hero heading. */
+export const FULL_NAME = 'Gabriel Gaetano Onen Baskara'
+
 /** PRD §7 — every CTA is a real, working link. */
 export const CONTACT = {
   email: 'tanobaskara21@gmail.com',

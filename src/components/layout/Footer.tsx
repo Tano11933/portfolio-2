@@ -1,4 +1,4 @@
-import { CONTACT, NAV_ITEMS, WORDMARK } from '../../data/nav'
+import { CONTACT, FULL_NAME, NAV_ITEMS, WORDMARK } from '../../data/nav'
 import { useSmoothScroll } from '../../lib/smooth-scroll-context'
 
 const LINK =
@@ -23,6 +23,7 @@ export function Footer() {
             <span className="font-display text-display-md font-semibold text-platinum">
               {WORDMARK}
             </span>
+            <span className="font-mono text-mono-xs text-steel-light">// aka Tano</span>
             <a href={`mailto:${CONTACT.email}`} className={LINK}>
               {CONTACT.email}
             </a>
@@ -58,7 +59,7 @@ export function Footer() {
 
         <div className="mt-8 flex flex-col gap-2 border-t border-steel-deep pt-5 font-mono text-mono-xs text-steel-light md:flex-row md:items-center md:justify-between">
           <span>
-            © {new Date().getFullYear()} {WORDMARK}
+            © {new Date().getFullYear()} {FULL_NAME}
           </span>
           {/* §4.6 — matches the hero eyebrow in CONTENT-STRATEGY §2. */}
           <span>Semarang / open to relocate</span>

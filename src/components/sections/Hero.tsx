@@ -4,6 +4,7 @@ import { GradientMesh } from '../hero/GradientMesh'
 import { HeroPortrait } from '../hero/HeroPortrait'
 import { StatusCard } from './StatusCard'
 import { Button } from '../ui/Button'
+import { FULL_NAME } from '../../data/nav'
 import { useSmoothScroll } from '../../lib/smooth-scroll-context'
 
 /** CONTENT-STRATEGY §2 — copy is verbatim; §2 supplies both eyebrow lengths. */
@@ -128,8 +129,11 @@ export function Hero() {
               {...rise(0.08)}
               className="font-display text-name font-semibold text-platinum uppercase"
             >
-              <span className="block">Gabriel</span>
-              <span className="block">Gaetano</span>
+              {/* Full name goes to assistive tech and search; the visible
+                  two-line name stays as designed. */}
+              <span className="sr-only">{FULL_NAME}</span>
+              <span aria-hidden="true" className="block">Gabriel</span>
+              <span aria-hidden="true" className="block">Gaetano</span>
             </motion.h1>
 
             {/* Body copy is capped short of the column edge. Only the name is
