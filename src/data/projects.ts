@@ -1,12 +1,8 @@
-/**
- * CONTENT-STRATEGY §5 — case studies in the fixed
- * Problem → Role & Stack → Key Features → What it demonstrates format.
- *
- * Display order is §5's priority order, not chronology. `features` is the
- * doc's comma-separated run split into list items (sentence case for display);
- * no wording is added.
- */
 export type Project = {
+  status?: string
+  period?: string
+  context?: string
+  links?: { label: string; url: string }[]
   slug: string
   name: string
   problem: string
@@ -18,116 +14,87 @@ export type Project = {
 
 export const FEATURED_PROJECTS: Project[] = [
   {
-    slug: 'eaglejeans',
-    name: 'EagleJeans',
-    problem:
-      'A garment manufacturing client needed a reliable way to track garments through 15 production stages and prevent bottlenecks, race conditions, and unauthorized access.',
-    role: 'Backend developer. Built the Laravel/Livewire PWA backend, organized business logic into 8 dedicated services, and implemented role-based access for 12 user roles with custom middleware and policy-based authorization.',
+    slug: 'eaglejeans', name: 'EagleJeans', period: 'Jun-Oct 2026', context: 'Client project',
+    problem: 'A garment manufacturer needed to track production through 15 stages, with reliable access controls and concurrent QR-code scans.',
+    role: 'Freelance backend developer. Worked with the business owner to define requirements and built the Laravel/Livewire backend, organizing business logic into eight services.',
     stack: ['Laravel', 'Livewire', 'PHP', 'MySQL', 'PWA'],
     features: [
-      '15-step QR-code production workflow with transactional integrity, row-locking, and DB transactions',
-      '558 automated tests across 49 test files for role-based access and production workflows',
-      'Security audit fixes for stored XSS through unrestricted file upload and brute-forceable password reset',
-      'Query-plan-driven optimization that reduced the busiest report page from 45 to 12 queries and eliminated N+1 patterns',
-      'Shared validation rules and rate limiting for hardened file-upload and password-reset flows',
+      'Access controls for 12 roles using middleware and authorization policies',
+      'Database transactions and row locking for QR-code generation and production scans',
+      'Shared file-upload validation and password-reset rate limiting at six attempts per minute',
+      'Query-plan analysis, N+1 fixes and targeted indexes reduced the busiest report from 45 to 12 queries',
     ],
-    demonstrates:
-      'Ability to design, secure, test, and optimize a production system for a live business, including concurrency-safe QR scanning and measurable database performance improvements.',
+    demonstrates: 'Used daily by 50-60 staff, processing approximately 60-100 production orders per day.',
   },
   {
-    slug: 'arthabooks',
-    name: 'ArthaBooks',
-    problem:
-      'Small businesses (UMKM) need proper double-entry bookkeeping without hiring an accountant.',
-    role: 'Solo developer (undergraduate thesis). Laravel 13, PHP 8.4, MySQL, Bootstrap 5.',
+    slug: 'arthabooks', name: 'ArthaBooks', period: 'Jun 2026', context: 'Undergraduate thesis',
+    problem: 'A double-entry accounting application for Indonesian small businesses, supporting SAK EMKM reporting requirements.',
+    role: 'Solo developer. Built the accounting workflow, role-based access, reports and payroll approvals as an undergraduate thesis project.',
     stack: ['Laravel 13', 'PHP 8.4', 'MySQL', 'Bootstrap 5'],
     features: [
-      'Automated journal entries (resolveAkunPair())',
-      'Role-based access — Admin/Staff/Owner, 13 permissions',
-      '5 financial reports including CALK',
-      'Payroll approval workflow and audit trail',
-      'User acceptance testing with 32 respondents across 10 SMEs — mean score 4.00/5.00',
+      'Automated double-entry journal engine',
+      'Three user roles with 13 permissions',
+      'Five financial reports, including Catatan atas Laporan Keuangan (CALK)',
+      'Payroll approval workflow and an audit trail',
     ],
-    demonstrates:
-      'Deep understanding of both software architecture and domain rules (accounting standards, SAK EMKM) — validated through formal thesis defense and testing with real SME users.',
+    demonstrates: 'Evaluated through UAT with 32 respondents across 10 SMEs, with a mean score of 4.00/5.00.',
   },
   {
-    slug: 'spotify-clone',
-    name: 'Spotify Clone',
-    problem:
-      'A personal project to build a music streaming platform end-to-end — production-grade auth, real-time features, and measurable catalog performance, rather than a tutorial CRUD build.',
-    role: 'Solo developer (personal project, in progress). Go 1.26 + Fiber v2 REST and WebSocket API, PostgreSQL 16 + Redis 7, React 19 + TypeScript frontend.',
-    stack: ['Go', 'Fiber', 'PostgreSQL', 'Redis', 'React', 'TypeScript'],
+    slug: 'spotify-clone', name: 'Melodia (Spotify Clone)', status: 'In progress', period: '2026-present', context: 'Personal project',
+    problem: 'A music streaming application with a responsive listening interface, catalog management and personal playlists. Screenshots use demo catalog data and accounts.',
+    role: 'Solo developer. Developing the React/TypeScript frontend alongside a Go REST and WebSocket API.',
+    stack: ['Go', 'Fiber', 'React', 'TypeScript', 'PostgreSQL', 'Redis'],
     features: [
-      'Layered backend (handler → service → repository) with JWT access + refresh tokens (rotation) and bcrypt',
-      'Redis-based rate limiting and a WebSocket hub for real-time features',
-      'Redis caching for catalog endpoints — p95 < 50 ms in load tests with a ~98-100% cache-hit rate',
+      'Layered backend with Fiber v2 and GORM',
+      'JWT access and refresh tokens, token rotation and bcrypt',
+      'Redis-based rate limiting and catalog caching',
+      'WebSocket hub for real-time features',
     ],
-    demonstrates:
-      'Backend depth beyond the Laravel stack: Go service architecture, performance work with Redis, and a React 19 + TypeScript frontend built alongside the API.',
-  },
-  {
-    slug: 'reusemart',
-    name: 'ReuseMart',
-    problem:
-      'A second-hand marketplace needed to coordinate 9 distinct user roles across web and mobile.',
-    role: 'Laravel + MySQL (web), Flutter + Dart (mobile).',
-    stack: ['Laravel', 'MySQL', 'Flutter', 'Dart'],
-    features: [
-      'Role-based permissions for Owner, Buyer, Seller, Hunter, Customer Service, Admin, Warehouse, Organization and Courier',
-      'Listing and ordering',
-      'Logistics',
-      'Sales reporting',
+    demonstrates: 'Continuing work on the Go API and React interface. The application is a personal project in progress.',
+    links: [
+      { label: 'Backend repository', url: 'https://github.com/Tano11933/spotify-backend' },
+      { label: 'Frontend repository', url: 'https://github.com/Tano11933/spotify-frontend' },
     ],
-    demonstrates:
-      'Comfort building complex multi-role systems across both platforms simultaneously.',
-  },
-  {
-    slug: 'bookhive',
-    name: 'BookHive',
-    problem:
-      'A library needed a simple online system for borrowing, donations, and room reservations.',
-    role: 'Laravel & MySQL.',
-    stack: ['Laravel', 'MySQL'],
-    features: [
-      'Admin/User/Guest roles',
-      'Borrowing & donation approval flow',
-      'Room reservation',
-      'Book recommendations',
-    ],
-    demonstrates:
-      'Clean, focused execution on a smaller-scope system — good contrast to the bigger case studies.',
   },
 ]
 
-/** §5 — the remaining projects, shown in the smaller "More Work" grid. */
 export const MORE_PROJECTS: Project[] = [
   {
-    slug: 't2kav-gym',
-    name: 'T2KAV Gym',
-    problem: 'A gym needed a mobile app for class and trainer bookings.',
-    role: 'Flutter & Dart.',
-    stack: ['Flutter', 'Dart'],
+    slug: 'reusemart', name: 'ReuseMart', period: 'May 2025', context: 'Team project: 3 members',
+    problem: 'A second-hand marketplace spanning web and mobile, with workflows for nine user roles.',
+    role: 'Developer in a three-person team. My work covered buyer transactions, PDF reporting and role-based mobile workflows.',
+    stack: ['Laravel', 'MySQL', 'Flutter', 'Dart'],
     features: [
-      'Class, equipment and trainer browsing',
-      'Booking & cancellation',
-      'Profile management',
+      'Buyer checkout, delivery selection, reward-point redemption and payment verification',
+      'Automatic cancellation with point refunds',
+      'Three PDF reports: item donations, donation requests and consignor transactions',
+      'Mobile login and role-based menus, courier profile and delivery tracking, plus sales and delivery push notifications',
     ],
-    demonstrates: 'Mobile-only capability, independent of the Laravel-heavy stack.',
+    demonstrates: 'Contributions across transactions, reporting and mobile delivery workflows in a shared codebase.',
   },
   {
-    slug: 'padukuhan-tritis',
-    name: 'Padukuhan Tritis',
-    problem:
-      'A village needed a public-facing profile site to showcase its culture and tourism potential.',
-    role: 'React.',
-    stack: ['React'],
-    features: [
-      'Responsive design',
-      'Gallery',
-      'Dedicated sections for identity and local resources',
-    ],
-    demonstrates:
-      'Frontend craft and content presentation for a non-technical, public audience — good visual portfolio piece.',
+    slug: 'padukuhan-tritis', name: 'Padukuhan Tritis', period: 'Jul 2025', context: 'Village information website',
+    problem: 'A public website presenting village information, tourism potential and community activities.',
+    role: 'Frontend developer. Built the responsive React website and its content presentation.',
+    stack: ['React', 'Vite', 'Bootstrap 5'],
+    features: ['Village profile and information', 'Tourism and local products', 'Responsive media gallery'],
+    demonstrates: 'Responsive interfaces for a public, non-technical audience.',
+    links: [{ label: 'Website repository', url: 'https://github.com/Tano11933/dusun_tritis' }],
+  },
+  {
+    slug: 'bookhive', name: 'BookHive',
+    problem: 'A library web application for borrowing, donations and room reservations.',
+    role: 'Laravel and MySQL application.',
+    stack: ['Laravel', 'MySQL'],
+    features: ['Admin, user and guest access', 'Borrowing and donation approvals', 'Room reservations and book recommendations'],
+    demonstrates: 'Library administration and member workflows.',
+  },
+  {
+    slug: 't2kav-gym', name: 'T2KAV Gym',
+    problem: 'A mobile application for browsing gym services and booking classes or trainers.',
+    role: 'Flutter and Dart application.',
+    stack: ['Flutter', 'Dart'],
+    features: ['Class, equipment and trainer browsing', 'Booking and cancellation', 'Profile management'],
+    demonstrates: 'Mobile service browsing and booking workflows.',
   },
 ]

@@ -33,6 +33,16 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     }
   }, [prefersReduced])
 
+  useEffect(() => {
+    let cancelled = false
+    void document.fonts.ready.then(() => {
+      if (cancelled || !window.location.hash) return
+      const target = document.getElementById(window.location.hash.slice(1))
+      target?.scrollIntoView({ behavior: 'instant', block: 'start' })
+    })
+    return () => { cancelled = true }
+  }, [])
+
   const scrollTo = useCallback((target: string) => {
     const el = document.querySelector<HTMLElement>(target)
     if (!el) return

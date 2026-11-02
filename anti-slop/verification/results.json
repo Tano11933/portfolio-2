@@ -1,0 +1,76 @@
+{
+  "results": [
+    {
+      "hoverExpansion": "pass"
+    },
+    {
+      "width": 1440,
+      "galleryHeight": 560,
+      "overflow": false,
+      "keyboardAndDialog": "pass"
+    },
+    {
+      "iphoneFrames": [
+        "Gym",
+        "ReuseMart",
+        "EagleJeans"
+      ],
+      "appHeaderBelowIsland": true
+    },
+    {
+      "fullCaptureOnDemand": "pass"
+    },
+    {
+      "width": 1440,
+      "melodiaFiveImagesAndAlt": "pass",
+      "melodiaMobileImageFit": "contain"
+    },
+    {
+      "width": 768,
+      "galleryHeight": 399.515625,
+      "overflow": false,
+      "keyboardAndDialog": "pass"
+    },
+    {
+      "width": 768,
+      "melodiaFiveImagesAndAlt": "pass",
+      "melodiaMobileImageFit": "contain"
+    },
+    {
+      "width": 390,
+      "galleryHeight": 340,
+      "overflow": false,
+      "keyboardAndDialog": "pass"
+    },
+    {
+      "width": 390,
+      "melodiaFiveImagesAndAlt": "pass",
+      "melodiaMobileImageFit": "contain"
+    },
+    {
+      "width": 360,
+      "galleryHeight": 340,
+      "overflow": false,
+      "keyboardAndDialog": "pass"
+    },
+    {
+      "width": 360,
+      "melodiaFiveImagesAndAlt": "pass",
+      "melodiaMobileImageFit": "contain"
+    },
+    {
+      "skeletonBefore": 340,
+      "skeletonAfter": 340
+    },
+    {
+      "imageErrorAndRetry": "pass"
+    },
+    {
+      "directProjectLink": "pass"
+    },
+    {
+      "animatedHover": "pass"
+    }
+  ],
+  "errors": []
+}

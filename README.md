@@ -1,6 +1,6 @@
 # Gabriel Gaetano — Personal Portfolio
 
-Website portfolio pribadi **Gabriel Gaetano Onen Baskara** — full-stack developer yang mengirim software produksi untuk bisnis nyata. Satu halaman, dibangun dengan **React 19 + TypeScript + Vite** dan **Tailwind CSS v4**.
+Website portfolio pribadi **Gabriel Gaetano Onen Baskara** — Software Developer dengan pengalaman freelance dan internship. Satu halaman, dibangun dengan **React 19 + TypeScript + Vite** dan **Tailwind CSS v4**.
 
 🔗 **Live:** <https://gabrielgaetano-portfolio.pages.dev/>
 
@@ -20,7 +20,7 @@ Situs ini bukan CV digital statis. Satu halaman dengan satu pekerjaan: meyakinka
 - **Klien / business owner** yang mencari developer freelance yang bisa dipercaya menangani proyek end-to-end.
 - **Recruiter** yang melakukan scan cepat 5–10 detik untuk mencocokkan stack dan mencari bukti proyek nyata.
 
-Alurnya dirancang untuk kredibilitas & konversi: perkenalan → bukti kepercayaan → cara kerja → studi kasus proyek → profil → kontak.
+Alurnya dirancang untuk kredibilitas & konversi: perkenalan → tools → studi kasus proyek → cara kerja → profil → kontak.
 
 ## 🧭 Struktur Halaman
 
@@ -87,7 +87,7 @@ Situs di-deploy sebagai **static site di Cloudflare Pages**:
 
 - **Build command:** `npm run build`
 - **Output directory:** `dist/`
-- `public/_redirects` menangani fallback SPA (semua rute diarahkan ke `index.html`).
+- Navigasi memakai fragment (`#work`, `#about`), sehingga tidak memerlukan rewrite global. Cloudflare Pages melayani file statis secara langsung.
 
 ## 📁 Struktur Proyek
 
@@ -139,9 +139,29 @@ Keputusan produk & desain tidak berhenti di kode:
 ## 📬 Kontak
 
 - Website: <https://gabrielgaetano-portfolio.pages.dev/>
-- LinkedIn: <https://www.linkedin.com/in/gabrielgaetanoonenbaskara>
+- LinkedIn: <https://www.linkedin.com/in/gabriel-gaetano-onen-baskara/>
 - GitHub: <https://github.com/Tano11933>
 
 ---
 
 © 2026 Gabriel Gaetano Onen Baskara
+
+## Pembaruan galeri dan akses agen (Oktober 2026)
+
+Featured Work menampilkan EagleJeans, ArthaBooks dan Melodia (in progress). ReuseMart, Tritis, BookHive dan T2KAV Gym ada di More Work. Melodia memiliki lima screenshot terpilih dari aplikasi dengan data demo.
+
+Galeri berisi 4–5 screenshot terpilih, accordion yang mengembang saat hover/focus di desktop, satu gambar pada container kecil, serta pembesaran melalui dialog yang mendukung keyboard. Geometri placeholder sama dengan komponen setelah dimuat. Screenshot sumber tetap utuh; aset terpilih dan versi penuh disimpan di `src/assets/images/projects/curated/`. `sources.json` mencatat sumbernya.
+
+`python scripts/prepare-project-images.py` dapat mengenkode ulang screenshot dari `D:\PROJECT\SCREENSHOTS` menggunakan Pillow. Proses build biasa memakai WebP yang sudah disimpan dan tidak memerlukan folder screenshot atau Python.
+
+`npm run build` juga menjalankan `scripts/generate-summary.mjs` untuk menghasilkan `public/index.md`, `public/llms.txt` dan sitemap dari data profil, proyek, skill serta credential. `/llms.txt` menunjuk ke ringkasan tersebut. `public/_headers` mengatur tipe konten kedua file di Cloudflare Pages. Rewrite global di `_redirects` dihapus agar tidak menimpa endpoint file statis. Sesudah deploy, periksa bahwa `/llms.txt` mengembalikan file teks, bukan halaman HTML fallback.
+
+Pengujian browser: `node scripts/check-gallery.cjs` memerlukan Playwright dan Chrome. Atur `PLAYWRIGHT_MODULE` bila paket tersedia di lokasi lain, dan `CHROME_PATH` untuk executable lain. Script menjalankan server uji sementara di localhost:5183 dan menutupnya setelah pengujian. Hasil dan screenshot disimpan di `anti-slop/verification/`.
+
+## Sinkronisasi CV (2 November 2026)
+
+`src/data/profile.ts` adalah sumber profil, kontak, pendidikan, bahasa, pengalaman dan aktivitas organisasi. `src/data/projects.ts` menyimpan konteks serta kontribusi proyek. `src/data/credentials.ts` membedakan sertifikasi dengan penyelesaian kursus; `src/data/skills.ts` mengikuti daftar skill CV, termasuk Docker Compose foundational.
+
+Metadata HTML dan JSON-LD memakai profile.ts lewat transform Vite, baik pada development maupun build. Generated Markdown dan llms.txt memakai data yang sama. Saat memperbarui konten, sesuaikan PROFILE.updated sebelum build.
+
+CV tersedia melalui /cv/gabriel-gaetano-software-developer.pdf. Empat PDF credential utama tersedia di /credentials/; dokumen hanya dimuat jika dibuka. File ini merupakan salinan dokumen yang diberikan pemilik portfolio. Sumber asli tetap tidak diubah. Kedua alamat LinkedIn lama dan baru merujuk ke tujuan yang sama menurut pemilik; penulisan di situs menggunakan URL dalam CV agar konsisten.

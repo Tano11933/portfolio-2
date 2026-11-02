@@ -15,11 +15,11 @@ export function Contact() {
     <Section id="contact">
       {/* One reveal for the closing statement — it reads as a single unit. */}
       <Reveal className="flex flex-col gap-6">
-        <SectionHeading label="Contact" title="Have a project in mind?" />
+        <SectionHeading label="Contact" title="Have a role or project in mind?" />
 
         <p className="max-w-[52ch] text-body-lg text-platinum-muted">
-          Whether it&rsquo;s a production system, a mobile app, or something in between —
-          let&rsquo;s talk about what you need.
+          I&rsquo;m open to software development roles and freelance work. Tell me about
+          your team, the problem and the kind of help you need.
         </p>
 
         <a

@@ -1,0 +1,16 @@
+# Gabriel Gaetano Onen Baskara
+
+> Software Developer based in Semarang, Indonesia, open to full-time roles, freelance projects and relocation.
+
+Informatics graduate with freelance and internship experience. Built the backend of a production-tracking PWA used daily by 50-60 staff. Melodia (Spotify Clone) is a personal project in progress; its screenshots use demo catalog data and accounts.
+
+## Portfolio
+
+- [Profile and project summaries](https://gabrielgaetano-portfolio.pages.dev/index.md): Experience, contributions, skills, credentials and contact details in Markdown.
+- [Visual portfolio](https://gabrielgaetano-portfolio.pages.dev/): Selected work and project screenshots.
+- [CV](https://gabrielgaetano-portfolio.pages.dev/cv/gabriel-gaetano-software-developer.pdf): Software Developer CV in PDF.
+
+## Professional profiles
+
+- [GitHub](https://github.com/Tano11933): Repositories.
+- [LinkedIn](https://www.linkedin.com/in/gabriel-gaetano-onen-baskara/): Professional profile.

@@ -1,111 +1,107 @@
 import type { GalleryItem } from '../components/work/AccordionGallery'
 
-/* Screenshots are imported so Vite hashes and bundles them; the originals were
-   re-encoded from PNG to WebP (9.1 MB → 0.92 MB) because even lazy-loaded they
-   would otherwise dwarf every other asset on the page. */
-
-import AB1 from '../assets/images/projects/AB1.webp'
+import EG2 from '../assets/images/projects/EG2.webp'
+import EG5 from '../assets/images/projects/EG5.webp'
+import eagle_scan from '../assets/images/projects/curated/eagle-scan.webp'
+import eagle_scan_full from '../assets/images/projects/curated/eagle-scan-full.webp'
+import eagle_login from '../assets/images/projects/curated/eagle-login.webp'
+import eagle_login_full from '../assets/images/projects/curated/eagle-login-full.webp'
+import EG3 from '../assets/images/projects/EG3.webp'
 import AB2 from '../assets/images/projects/AB2.webp'
 import AB3 from '../assets/images/projects/AB3.webp'
 import AB4 from '../assets/images/projects/AB4.webp'
 import AB5 from '../assets/images/projects/AB5.webp'
-import AB6 from '../assets/images/projects/AB6.webp'
-import AB7 from '../assets/images/projects/AB7.webp'
-import AB8 from '../assets/images/projects/AB8.webp'
 import AB9 from '../assets/images/projects/AB9.webp'
-
-import EG1 from '../assets/images/projects/EG1.webp'
-import EG2 from '../assets/images/projects/EG2.webp'
-import EG3 from '../assets/images/projects/EG3.webp'
-import EG4 from '../assets/images/projects/EG4.webp'
-import EG5 from '../assets/images/projects/EG5.webp'
-import EG6 from '../assets/images/projects/EG6.webp'
-import EG7 from '../assets/images/projects/EG7.webp'
-import EG8 from '../assets/images/projects/EG8.webp'
-import EG9 from '../assets/images/projects/EG9.webp'
-
 import BK1 from '../assets/images/projects/BK1.webp'
-import BK2 from '../assets/images/projects/BK2.webp'
-import BK3 from '../assets/images/projects/BK3.webp'
 import BK4 from '../assets/images/projects/BK4.webp'
-import BK6 from '../assets/images/projects/BK6.webp'
-import BK7 from '../assets/images/projects/BK7.webp'
 import BK8 from '../assets/images/projects/BK8.webp'
+import BK6 from '../assets/images/projects/BK6.webp'
+import reuse_storefront from '../assets/images/projects/curated/reuse-storefront.webp'
+import reuse_storefront_full from '../assets/images/projects/curated/reuse-storefront-full.webp'
+import reuse_checkout from '../assets/images/projects/curated/reuse-checkout.webp'
+import reuse_checkout_full from '../assets/images/projects/curated/reuse-checkout-full.webp'
+import reuse_warehouse from '../assets/images/projects/curated/reuse-warehouse.webp'
+import reuse_warehouse_full from '../assets/images/projects/curated/reuse-warehouse-full.webp'
+import reuse_report from '../assets/images/projects/curated/reuse-report.webp'
+import reuse_report_full from '../assets/images/projects/curated/reuse-report-full.webp'
+import reuse_mobile from '../assets/images/projects/curated/reuse-mobile.webp'
+import reuse_mobile_full from '../assets/images/projects/curated/reuse-mobile-full.webp'
+import gym_home from '../assets/images/projects/curated/gym-home.webp'
+import gym_home_full from '../assets/images/projects/curated/gym-home-full.webp'
+import gym_trainers from '../assets/images/projects/curated/gym-trainers.webp'
+import gym_trainers_full from '../assets/images/projects/curated/gym-trainers-full.webp'
+import gym_booking from '../assets/images/projects/curated/gym-booking.webp'
+import gym_booking_full from '../assets/images/projects/curated/gym-booking-full.webp'
+import gym_payment from '../assets/images/projects/curated/gym-payment.webp'
+import gym_payment_full from '../assets/images/projects/curated/gym-payment-full.webp'
+import gym_attendance from '../assets/images/projects/curated/gym-attendance.webp'
+import gym_attendance_full from '../assets/images/projects/curated/gym-attendance-full.webp'
+import tritis_home from '../assets/images/projects/curated/tritis-home.webp'
+import tritis_home_full from '../assets/images/projects/curated/tritis-home-full.webp'
+import tritis_profile from '../assets/images/projects/curated/tritis-profile.webp'
+import tritis_profile_full from '../assets/images/projects/curated/tritis-profile-full.webp'
+import tritis_potential from '../assets/images/projects/curated/tritis-potential.webp'
+import tritis_potential_full from '../assets/images/projects/curated/tritis-potential-full.webp'
+import tritis_gallery from '../assets/images/projects/curated/tritis-gallery.webp'
+import tritis_gallery_full from '../assets/images/projects/curated/tritis-gallery-full.webp'
 
-import KKN1 from '../assets/images/projects/KKN1.webp'
-import KKN2 from '../assets/images/projects/KKN2.webp'
-import KKN3 from '../assets/images/projects/KKN3.webp'
-import KKN4 from '../assets/images/projects/KKN4.webp'
+import melodia_home from '../assets/images/projects/curated/melodia-home.webp'
+import melodia_home_full from '../assets/images/projects/curated/melodia-home-full.webp'
+import melodia_search from '../assets/images/projects/curated/melodia-search.webp'
+import melodia_search_full from '../assets/images/projects/curated/melodia-search-full.webp'
+import melodia_playlist from '../assets/images/projects/curated/melodia-playlist.webp'
+import melodia_playlist_full from '../assets/images/projects/curated/melodia-playlist-full.webp'
+import melodia_admin from '../assets/images/projects/curated/melodia-admin.webp'
+import melodia_admin_full from '../assets/images/projects/curated/melodia-admin-full.webp'
+import melodia_mobile from '../assets/images/projects/curated/melodia-mobile.webp'
+import melodia_mobile_full from '../assets/images/projects/curated/melodia-mobile-full.webp'
 
-import RE1 from '../assets/images/projects/REUSE-1.webp'
-import RE2 from '../assets/images/projects/REUSE-2.webp'
-import RE3 from '../assets/images/projects/REUSE-3.webp'
-import RE4 from '../assets/images/projects/REUSE-4.webp'
-import RE5 from '../assets/images/projects/REUSE-5.webp'
-import RE6 from '../assets/images/projects/REUSE-6.webp'
-
-import T1 from '../assets/images/projects/T2KAV-1.webp'
-import T2 from '../assets/images/projects/T2KAV-2.webp'
-import T3 from '../assets/images/projects/T2KAV-3.webp'
-
-/**
- * Per-project screenshots for the §4.9 gallery, keyed by the project slug in
- * `projects.ts`. Labels describe what each capture actually shows.
- */
 export const PROJECT_GALLERIES: Record<string, GalleryItem[]> = {
-  eaglejeans: [
-    { image: EG1, label: 'Sign-in', alt: 'EagleJeans staff sign-in screen with email and password fields' },
-    { image: EG2, label: 'Owner dashboard', alt: 'EagleJeans owner dashboard showing total orders, active sewing processes, and work status cards' },
-    { image: EG3, label: 'Production report', alt: 'EagleJeans production report page with monthly summary and completed order metrics' },
-    { image: EG4, label: 'Order list', alt: 'EagleJeans order list page for tracking production notes by process and status' },
-    { image: EG5, label: 'Order detail', alt: 'EagleJeans order detail page with item list, production status, and action buttons' },
-    { image: EG6, label: 'Production ticket', alt: 'EagleJeans production ticket sheet with size breakdown, material info, and QR code' },
-    { image: EG7, label: 'Scan barcode', alt: 'EagleJeans barcode scan interface for matching a production order to a QR code' },
-    { image: EG8, label: 'Process history', alt: 'EagleJeans production history page showing product detail, stage updates, and process status' },
-    { image: EG9, label: 'Welcome login', alt: 'EagleJeans welcome login screen for returning staff to the production tracking app' },
+  'spotify-clone': [
+    { image: melodia_home, fullImage: melodia_home_full, label: 'Home & discovery', alt: 'Melodia home with popular artists, new album covers and a playback bar', kind: 'web' },
+    { image: melodia_search, fullImage: melodia_search_full, label: 'Search results', alt: 'Melodia search results for hujan, with matching songs and the Arsip Hujan and Sinyal Hutan albums', kind: 'web' },
+    { image: melodia_playlist, fullImage: melodia_playlist_full, label: 'Playlist detail', alt: 'Melodia Fokus Ngoding playlist with a track list, add-song selector and a playback bar', kind: 'web' },
+    { image: melodia_admin, fullImage: melodia_admin_full, label: 'Catalog management', alt: 'Melodia admin catalog with Artist, Album, Lagu and Genre tabs, an artist list and an add-artist form', kind: 'web' },
+    { image: melodia_mobile, fullImage: melodia_mobile_full, label: 'Mobile album', alt: 'Melodia mobile Ruang Tunggu album by Senja Kolektif, with a play button, track durations, bottom navigation and player controls', kind: 'phone', device: true, aspectRatio: '780 / 1688', screenFit: 'contain', screenTheme: 'dark' },
   ],
-
-  arthabooks: [
-    { image: AB1, label: 'Sign-in', alt: 'ArthaBooks sign-in screen with email and password fields' },
-    { image: AB2, label: 'Dashboard overview', alt: 'ArthaBooks dashboard with financial summary cards and charts' },
-    { image: AB3, label: 'Transactions', alt: 'ArthaBooks transaction list with filters, categories, and status badges' },
-    { image: AB7, label: 'Chart of accounts', alt: 'ArthaBooks chart of accounts table for managing account codes and categories' },
-    { image: AB8, label: 'Opening balance', alt: 'ArthaBooks opening balance page for setting initial asset and liability balances' },
-    { image: AB6, label: 'Role & access', alt: 'ArthaBooks role and permission management screen for admin and owner access' },
-    { image: AB4, label: 'Profit & loss', alt: 'ArthaBooks profit and loss report page with totals and account summaries' },
-    { image: AB5, label: 'CALK', alt: 'ArthaBooks notes to the financial statements (CALK) report page' },
-    { image: AB9, label: 'Balance sheet', alt: 'ArthaBooks balance sheet report showing assets, liabilities, and equity totals' },
+  'eaglejeans': [
+    { image: EG2, label: 'Owner dashboard', alt: 'EagleJeans owner dashboard showing total orders, active sewing processes, and work status cards', kind: 'web' },
+    { image: EG5, label: 'Order detail', alt: 'EagleJeans order detail page with item list, production status, and action buttons', kind: 'web' },
+    { image: EG3, label: 'Production report', alt: 'EagleJeans production report with monthly summary and completed order metrics', kind: 'web' },
+    { image: eagle_scan, fullImage: eagle_scan_full, label: 'Scan barcode', alt: 'EagleJeans mobile scan screen with QR scanning area and manual code entry', kind: 'phone', device: true, aspectRatio: '271 / 592' },
+    { image: eagle_login, fullImage: eagle_login_full, label: 'Staff sign-in', alt: 'EagleJeans complete mobile sign-in screen with account fields and support information', kind: 'phone', device: true, aspectRatio: '267 / 591' },
   ],
-
-  reusemart: [
-    { image: RE3, label: 'Marketplace home', alt: 'ReuseMart storefront with product categories' },
-    { image: RE5, label: 'Product detail', alt: 'ReuseMart product page with rating and comments' },
-    { image: RE6, label: 'Payment confirmation', alt: 'ReuseMart payment confirmation and order summary' },
-    { image: RE2, label: 'Payment verification', alt: 'ReuseMart staff view listing payments awaiting verification' },
-    { image: RE4, label: 'Web sign-in', alt: 'ReuseMart web login screen' },
-    { image: RE1, label: 'Mobile app (Flutter)', alt: 'ReuseMart Flutter app login screen' },
+  'arthabooks': [
+    { image: AB2, label: 'Dashboard overview', alt: 'ArthaBooks dashboard with financial summary cards and charts', kind: 'web' },
+    { image: AB3, label: 'Transactions', alt: 'ArthaBooks transaction list with filters, categories, and status badges', kind: 'web' },
+    { image: AB4, label: 'Profit & loss', alt: 'ArthaBooks profit and loss report page with totals and account summaries', kind: 'web' },
+    { image: AB5, label: 'CALK', alt: 'ArthaBooks notes to the financial statements (CALK) report page', kind: 'web' },
+    { image: AB9, label: 'Balance sheet', alt: 'ArthaBooks balance sheet report showing assets, liabilities, and equity totals', kind: 'web' },
   ],
-
-  bookhive: [
-    { image: BK1, label: 'Landing page', alt: 'BookHive landing page' },
-    { image: BK4, label: 'Member dashboard', alt: 'BookHive member dashboard with new arrivals and borrowing stats' },
-    { image: BK7, label: 'Admin dashboard', alt: 'BookHive admin dashboard with daily report' },
-    { image: BK8, label: 'Borrowing approvals', alt: 'BookHive borrowing request approval queue' },
-    { image: BK6, label: 'Borrowing records', alt: 'BookHive borrowing records table with return status' },
-    { image: BK2, label: 'Library services', alt: 'BookHive services: lending, room reservation, donation, recommendations' },
-    { image: BK3, label: 'Sign-in', alt: 'BookHive login screen' },
+  'bookhive': [
+    { image: BK1, label: 'Landing page', alt: 'BookHive landing page', kind: 'web' },
+    { image: BK4, label: 'Member dashboard', alt: 'BookHive member dashboard with new arrivals and borrowing stats', kind: 'web' },
+    { image: BK8, label: 'Borrowing approvals', alt: 'BookHive borrowing request approval queue', kind: 'web' },
+    { image: BK6, label: 'Borrowing records', alt: 'BookHive borrowing records table with return status', kind: 'web' },
   ],
-
+  'reusemart': [
+    { image: reuse_storefront, fullImage: reuse_storefront_full, label: 'Storefront', alt: 'ReuseMart storefront with search, categories and second-hand listings', kind: 'web' },
+    { image: reuse_checkout, fullImage: reuse_checkout_full, label: 'Checkout', alt: 'ReuseMart checkout with delivery selection and order summary', kind: 'web' },
+    { image: reuse_warehouse, fullImage: reuse_warehouse_full, label: 'Warehouse inventory', alt: 'ReuseMart consignment inventory with statuses and actions', kind: 'web' },
+    { image: reuse_report, fullImage: reuse_report_full, label: 'Owner report', alt: 'ReuseMart owner commission report with product revenue totals', kind: 'web' },
+    { image: reuse_mobile, fullImage: reuse_mobile_full, label: 'Buyer app', alt: 'ReuseMart Flutter buyer home with points and available items', kind: 'phone', device: true, statusInset: 0.035, aspectRatio: '1180 / 2556' },
+  ],
   't2kav-gym': [
-    { image: T2, label: 'Home & trainers', alt: 'T2KAV Gym app home screen with trainers and recommendations' },
-    { image: T3, label: 'Booking confirmation', alt: 'T2KAV Gym booking confirmation with session totals' },
-    { image: T1, label: 'Splash screen', alt: 'T2KAV Gym app splash screen' },
+    { image: gym_home, fullImage: gym_home_full, label: 'Home', alt: 'T2KAV Gym home with recommended classes and services', kind: 'phone', device: true, statusInset: 0.035, aspectRatio: '1180 / 2556' },
+    { image: gym_trainers, fullImage: gym_trainers_full, label: 'Trainers', alt: 'T2KAV Gym trainers with specialities and session prices', kind: 'phone', device: true, statusInset: 0.035, aspectRatio: '1180 / 2556' },
+    { image: gym_booking, fullImage: gym_booking_full, label: 'Class booking', alt: 'T2KAV Gym booking form with session date and time', kind: 'phone', device: true, statusInset: 0.035, aspectRatio: '1180 / 2556' },
+    { image: gym_payment, fullImage: gym_payment_full, label: 'Payment', alt: 'T2KAV Gym payment methods with GoPay, DANA and OVO', kind: 'phone', device: true, statusInset: 0.035, aspectRatio: '1180 / 2556' },
+    { image: gym_attendance, fullImage: gym_attendance_full, label: 'QR attendance', alt: 'T2KAV Gym attendance screen with a QR scan action', kind: 'phone', device: true, statusInset: 0.035, aspectRatio: '1180 / 2556' },
   ],
-
   'padukuhan-tritis': [
-    { image: KKN1, label: 'Landing page', alt: 'Padukuhan Tritis village site landing page' },
-    { image: KKN3, label: 'Local UMKM & culture', alt: 'Village page showcasing local small businesses and culture' },
-    { image: KKN2, label: 'Village history', alt: 'Village history timeline section' },
-    { image: KKN4, label: 'About the village', alt: 'About section with village environment photography' },
+    { image: tritis_home, fullImage: tritis_home_full, label: 'Village home', alt: 'Padukuhan Tritis village website with landscape hero and introduction', kind: 'web' },
+    { image: tritis_profile, fullImage: tritis_profile_full, label: 'Village profile', alt: 'Padukuhan Tritis history and village profile', kind: 'web' },
+    { image: tritis_potential, fullImage: tritis_potential_full, label: 'Local products & culture', alt: 'Padukuhan Tritis local products, crafts and culture', kind: 'web' },
+    { image: tritis_gallery, fullImage: tritis_gallery_full, label: 'Community gallery', alt: 'Padukuhan Tritis photographs of village activities and community life', kind: 'web' },
   ],
 }

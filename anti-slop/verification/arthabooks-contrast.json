@@ -1,0 +1,16 @@
+[
+  {
+    "width": 1440,
+    "allFiveSelections": "pass",
+    "textContrast": ">=4.5:1",
+    "keyboardFocus": "pass",
+    "dialogDarkTheme": "pass"
+  },
+  {
+    "width": 390,
+    "allFiveSelections": "pass",
+    "textContrast": ">=4.5:1",
+    "keyboardFocus": "pass",
+    "dialogDarkTheme": "pass"
+  }
+]

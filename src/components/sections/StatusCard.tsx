@@ -1,11 +1,10 @@
 import { motion, useReducedMotion } from 'motion/react'
 import { cx } from '../../lib/cx'
 import { Tag } from '../ui/Tag'
+import { PROFILE } from '../../data/profile'
 
-/** CONTENT-STRATEGY §2 — full-stack developer positioning. */
-const STATUS = 'Open to full-time roles & freelance projects'
-const STACK = ['Laravel', 'Express.js', 'TypeScript', 'Go', 'PostgreSQL', 'Redis']
-const BUILDING = 'EagleJeans - production tracking PWA'
+const STATUS = 'Personal project / In progress'
+const STACK = PROFILE.currentProject.stack
 
 /**
  * DESIGN-SYSTEM §4.5, as revised by §4.7.
@@ -63,7 +62,7 @@ export function StatusCard({ className }: { className?: string }) {
 
         <p className="border-t border-steel-deep pt-3 text-body-sm text-steel-light">
           <span className="font-mono text-mono-xs">Currently building:</span>{' '}
-          <span className="text-platinum">{BUILDING}</span>
+          <a href={PROFILE.currentProject.href} className="rounded-btn text-platinum underline underline-offset-4">{PROFILE.currentProject.name}</a>
         </p>
       </div>
     </motion.div>

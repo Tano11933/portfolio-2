@@ -128,18 +128,17 @@ Foto muncul sekali lagi di halaman, tapi dengan treatment berbeda dari hero — 
 - **Mobile (`sm`):** portrait pindah ke atas paragraf About, ukuran diperkecil lagi (`max-width: 180px`), center-aligned — bukan di samping teks.
 - **Jangan** tambahkan animasi/interaksi berat di sini — section About lebih tenang dibanding hero, cukup scroll-reveal fade sederhana kalau ada.
 
-### 4.9 Project Photo Gallery — AccordionGallery (React Bits)
-Dipakai di dalam tiap case study card di Featured Work (§5 CONTENT-STRATEGY: EagleJeans, ArthaBooks, ReuseMart) untuk menampilkan beberapa screenshot per project, menggantikan satu gambar statis.
+### 4.9 Project screenshot gallery (revised after audit, October 2026)
 
-- **Pemetaan warna ke token** (jangan pakai default component-nya):
-  - `accentColor` → `--color-steel-light` (`#7C93A3`) — di atas panel gelap
-  - `overlayColor` → `--color-onyx` (`#0A0A0A`)
-  - `textColor` → `--color-platinum` (`#E5E4E2`)
-- **`grayscale: true`** (default component) — **pertahankan**, jangan dimatikan. Ini kebetulan pas sekali dengan tema Engineered Metal Flow: panel collapsed desaturated, panel aktif full color — jadi terasa seperti bagian dari sistem visual situs, bukan komponen tempel.
-- **Ukuran:** `height: 320` (desktop), turun ke tinggi lebih pendek atau pakai perilaku bawaan komponen di mobile (component sudah auto-stack vertical di bawah 520px — cukup dekat dengan breakpoint `sm`/`md` kita, tidak perlu dipaksa sama persis).
-- **`trigger: "hover"`** di desktop wajar, tapi pastikan tap/focus tetap berfungsi di mobile (sudah ditangani bawaan oleh komponen — konfirmasi saja saat implementasi, jangan asumsi).
-- **Performance — perhatikan ini:** GSAP adalah dependency baru yang lumayan besar. Section Featured Work ada di bawah hero (bukan LCP), jadi **wajib lazy-load** komponen ini (`React.lazy` + `Suspense`, atau dynamic import) supaya GSAP tidak ikut ke initial bundle yang mempengaruhi skor Lighthouse yang sudah kita optimasi ke 100/86. Jangan sampai regresi gara-gara komponen ini.
-- **Sumber gambar:** komponen butuh beberapa foto per project (bukan cuma 1 screenshot seperti sekarang) — ini belum ada asetnya, perlu disiapkan terpisah per project sebelum implementasi.
+- Curate 4–5 screenshots per project. Lead with the main workflow or dashboard; sign-in screens are secondary.
+- Desktop: hover/focus accordion inspired by React Bits. Active web panels have flex weight 12; phone panels use 4 to respect their narrow proportions; collapsed panels use 1. Keep the established grayscale treatment only on inactive panels. Numbered selectors provide visible labels and keyboard navigation; Mouse hover expands panels; click/tap and keyboard selectors remain available.
+- Below 768px, or inside a container narrower than 420px, show one screenshot and numbered selectors. The selected screen name stays visible in the caption. A phone-only gallery has a 420px stage; desktop project stages use a fluid 240–460px range. Compact web projects use 280px.
+- Placeholder and loaded gallery share the same CSS geometry, including toolbar and selectors. Keep lazy loading gated by viewport proximity.
+- Preserve each screenshot's aspect ratio. Web, phone and document captures carry explicit kind metadata; phone captures are contained, never stretched to fill landscape frames. Mobile captures use a shared CSS iPhone-style shell with metallic rim, rounded screen, Dynamic Island, status icons, side buttons and home indicator. The frame reserves 7% above app content and 3% below it. Source screenshots that already include an Android status bar declare a source inset so it is not duplicated. Source pixels remain available through Open image and Full size; full-size mode removes the presentation shell. No rectangular matte from a composited PNG is included.
+- Clicking the active screenshot or Enlarge opens a native modal dialog with Previous/Next, keyboard arrows, Escape, focus restoration, fit/full-size modes and an original-image link. Full captures are only requested when opened.
+- A load failure has a retry action; lazy-module failures show a reload action.
+- Colors, fonts and radii continue to use the existing Engineered Metal Flow tokens. Keep controls at least 44px tall and provide visible focus indicators.
+
 
 ---
 

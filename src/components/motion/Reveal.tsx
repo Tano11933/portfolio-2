@@ -14,7 +14,7 @@ type Tag = keyof typeof TAGS
 function useRevealVariants(distance = 24): Variants {
   const prefersReduced = useReducedMotion()
   return {
-    hidden: prefersReduced ? { opacity: 0 } : { opacity: 0, y: distance },
+    hidden: prefersReduced ? { opacity: 1 } : { opacity: 0, y: distance },
     visible: {
       opacity: 1,
       y: 0,

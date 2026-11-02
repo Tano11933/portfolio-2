@@ -4,6 +4,7 @@ import { cx } from '../../lib/cx'
 import { Card, type CardVariant } from '../ui/Card'
 import { Tag } from '../ui/Tag'
 import { ProjectGallery } from './ProjectGallery'
+import { ProjectLinks } from './ProjectLinks'
 
 /**
  * Featured case study — the fixed CONTENT-STRATEGY §5 block order, as a
@@ -31,9 +32,13 @@ export function CaseStudyCard({
       variant={variant}
       className={cx('p-5 md:p-6 lg:p-7', emphasised && 'gradient-ring-static')}
     >
-      <article>
+      <article tabIndex={-1} id={project.slug} className="scroll-mt-8 outline-none">
         <header className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-5">
-          <h3>{project.name}</h3>
+          <div>
+            {(project.period || project.context) && <p className={`${label} mb-2`}>{[project.period, project.context].filter(Boolean).join(' · ')}</p>}
+            <h3>{project.name}</h3>
+            {project.status && <p className={`${label} mt-2`}>{project.status}</p>}
+          </div>
           <ul className="flex flex-wrap gap-2">
             {project.stack.map((tech) => (
               <li key={tech}>
@@ -45,21 +50,21 @@ export function CaseStudyCard({
 
         {/* §4.9 — screenshots introduce the project, then the detail blocks
             below explain it. 320px per §4.9. */}
-        <ProjectGallery items={PROJECT_GALLERIES[project.slug] ?? []} height={320} className="mt-5" />
+        <ProjectGallery items={PROJECT_GALLERIES[project.slug] ?? []} projectName={project.name} tone={isLight ? 'light' : 'dark'} className="mt-5" />
 
         <dl className="mt-5 grid gap-5 lg:grid-cols-2 lg:gap-6">
           <div>
-            <dt className={label}>Problem</dt>
+            <dt className={label}>Project context</dt>
             <dd className={body}>{project.problem}</dd>
           </div>
 
           <div>
-            <dt className={label}>Role &amp; Stack</dt>
+            <dt className={label}>My contribution</dt>
             <dd className={body}>{project.role}</dd>
           </div>
 
           <div>
-            <dt className={label}>Key features</dt>
+            <dt className={label}>Implementation</dt>
             <dd>
               <ul className={cx(body, 'flex flex-col gap-2')}>
                 {project.features.map((feature) => (
@@ -79,10 +84,11 @@ export function CaseStudyCard({
           </div>
 
           <div>
-            <dt className={label}>What it demonstrates</dt>
+            <dt className={label}>{project.status ? 'Current focus' : 'Outcome'}</dt>
             <dd className={body}>{project.demonstrates}</dd>
           </div>
         </dl>
+        <ProjectLinks project={project} light={isLight} />
       </article>
     </Card>
   )

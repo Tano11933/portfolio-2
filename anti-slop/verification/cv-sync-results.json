@@ -1,0 +1,47 @@
+[
+  {
+    "width": 1440,
+    "profileAndMetadata": "pass",
+    "featuredOrder": "pass",
+    "experience": "pass",
+    "credentials": "4 selected + 7 courses",
+    "credentialContrast": ">=4.5:1",
+    "disclosuresKeyboard": "pass",
+    "horizontalOverflow": false
+  },
+  {
+    "width": 768,
+    "profileAndMetadata": "pass",
+    "featuredOrder": "pass",
+    "experience": "pass",
+    "credentials": "4 selected + 7 courses",
+    "credentialContrast": ">=4.5:1",
+    "disclosuresKeyboard": "pass",
+    "horizontalOverflow": false
+  },
+  {
+    "width": 390,
+    "profileAndMetadata": "pass",
+    "featuredOrder": "pass",
+    "experience": "pass",
+    "credentials": "4 selected + 7 courses",
+    "credentialContrast": ">=4.5:1",
+    "disclosuresKeyboard": "pass",
+    "horizontalOverflow": false
+  },
+  {
+    "width": 360,
+    "profileAndMetadata": "pass",
+    "featuredOrder": "pass",
+    "experience": "pass",
+    "credentials": "4 selected + 7 courses",
+    "credentialContrast": ">=4.5:1",
+    "disclosuresKeyboard": "pass",
+    "horizontalOverflow": false
+  },
+  {
+    "pdfIntegrity": "CV and 4 certificates byte-identical to provided sources",
+    "textAndSitemap": "pass",
+    "errors": []
+  }
+]

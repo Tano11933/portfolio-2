@@ -1,0 +1,254 @@
+[
+  {
+    "name": "melodia-home",
+    "source": "Melodia/01-beranda-desktop.png",
+    "preview": [
+      1600,
+      1000
+    ],
+    "full": [
+      2400,
+      1500
+    ]
+  },
+  {
+    "name": "melodia-search",
+    "source": "Melodia/04-pencarian-desktop.png",
+    "preview": [
+      1600,
+      1000
+    ],
+    "full": [
+      2400,
+      1500
+    ]
+  },
+  {
+    "name": "melodia-playlist",
+    "source": "Melodia/10-detail-playlist-desktop.png",
+    "preview": [
+      1600,
+      1000
+    ],
+    "full": [
+      2400,
+      1500
+    ]
+  },
+  {
+    "name": "melodia-admin",
+    "source": "Melodia/06-admin-desktop.png",
+    "preview": [
+      1600,
+      1000
+    ],
+    "full": [
+      2400,
+      1500
+    ]
+  },
+  {
+    "name": "melodia-mobile",
+    "source": "Melodia/09-detail-album-mobile.png",
+    "preview": [
+      481,
+      1040
+    ],
+    "full": [
+      780,
+      1688
+    ]
+  },
+  {
+    "name": "eagle-scan",
+    "source": "SS-EagleJeans/Screenshot 2026-10-24 133246.png",
+    "preview": [
+      271,
+      592
+    ],
+    "full": [
+      271,
+      592
+    ]
+  },
+  {
+    "name": "eagle-login",
+    "source": "SS-EagleJeans/Screenshot 2026-10-24 132601.png",
+    "preview": [
+      267,
+      591
+    ],
+    "full": [
+      267,
+      591
+    ]
+  },
+  {
+    "name": "reuse-storefront",
+    "source": "SS-ReuseMart/web/Screenshot 2026-10-24 124859.png",
+    "preview": [
+      1440,
+      654
+    ],
+    "full": [
+      1600,
+      727
+    ]
+  },
+  {
+    "name": "reuse-checkout",
+    "source": "SS-ReuseMart/web/11_pembeli-checkout.png",
+    "preview": [
+      1440,
+      900
+    ],
+    "full": [
+      1440,
+      1251
+    ]
+  },
+  {
+    "name": "reuse-warehouse",
+    "source": "SS-ReuseMart/web/27_gudang-beranda.png",
+    "preview": [
+      1440,
+      900
+    ],
+    "full": [
+      1440,
+      919
+    ]
+  },
+  {
+    "name": "reuse-report",
+    "source": "SS-ReuseMart/web/45_owner-laporan-komisi-bulanan.png",
+    "preview": [
+      1440,
+      900
+    ],
+    "full": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "reuse-mobile",
+    "source": "SS-ReuseMart/mobile/05_pembeli-beranda-atas.png",
+    "preview": [
+      480,
+      1040
+    ],
+    "full": [
+      969,
+      2100
+    ]
+  },
+  {
+    "name": "gym-home",
+    "source": "8_B_Gym_Screenshots/_tools/raw_after/06_home.png",
+    "preview": [
+      480,
+      1040
+    ],
+    "full": [
+      969,
+      2100
+    ]
+  },
+  {
+    "name": "gym-trainers",
+    "source": "8_B_Gym_Screenshots/_tools/raw_after/09_layanan_trainer.png",
+    "preview": [
+      480,
+      1040
+    ],
+    "full": [
+      969,
+      2100
+    ]
+  },
+  {
+    "name": "gym-booking",
+    "source": "8_B_Gym_Screenshots/_tools/raw_after/12_orderPage.png",
+    "preview": [
+      480,
+      1040
+    ],
+    "full": [
+      969,
+      2100
+    ]
+  },
+  {
+    "name": "gym-payment",
+    "source": "8_B_Gym_Screenshots/_tools/raw_after/14_paymentPage.png",
+    "preview": [
+      480,
+      1040
+    ],
+    "full": [
+      969,
+      2100
+    ]
+  },
+  {
+    "name": "gym-attendance",
+    "source": "8_B_Gym_Screenshots/_tools/raw_after/24_presensi.png",
+    "preview": [
+      480,
+      1040
+    ],
+    "full": [
+      969,
+      2100
+    ]
+  },
+  {
+    "name": "tritis-home",
+    "source": "ss_dusun_tritis/1-beranda.jpg",
+    "preview": [
+      1440,
+      900
+    ],
+    "full": [
+      1440,
+      4435
+    ]
+  },
+  {
+    "name": "tritis-profile",
+    "source": "ss_dusun_tritis/2-profil.jpg",
+    "preview": [
+      1440,
+      900
+    ],
+    "full": [
+      1440,
+      3445
+    ]
+  },
+  {
+    "name": "tritis-potential",
+    "source": "ss_dusun_tritis/3-potensi.jpg",
+    "preview": [
+      1440,
+      900
+    ],
+    "full": [
+      1440,
+      3196
+    ]
+  },
+  {
+    "name": "tritis-gallery",
+    "source": "ss_dusun_tritis/4-galeri.jpg",
+    "preview": [
+      1440,
+      900
+    ],
+    "full": [
+      1440,
+      1551
+    ]
+  }
+]

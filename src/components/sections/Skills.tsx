@@ -1,4 +1,5 @@
-import { CERTIFICATION_ISSUERS, SKILL_GROUPS } from '../../data/skills'
+import { SKILL_GROUPS } from '../../data/skills'
+import { Credentials } from './Credentials'
 import { Section, SectionHeading } from '../layout/Section'
 import { Reveal, RevealGroup, RevealItem } from '../motion/Reveal'
 
@@ -46,10 +47,7 @@ export function Skills() {
         ))}
       </RevealGroup>
 
-      <p className="mt-7 text-body-sm text-steel-deep">
-        <span className="font-mono text-mono-xs uppercase text-steel">Certifications</span>{' '}
-        <span className="ml-2">{CERTIFICATION_ISSUERS.join(' · ')}</span>
-      </p>
+      <Credentials />
     </Section>
   )
 }

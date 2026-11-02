@@ -14,9 +14,8 @@ export function MoreWork() {
         <h3 className="font-mono text-mono-xs uppercase text-steel-light">More work</h3>
       </Reveal>
 
-      {/* Third column waits until xl: at 768px three across leaves ~224px per
-          card, which wraps the longer titles and squeezes the copy. */}
-      <RevealGroup className="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+
+      <RevealGroup className="mt-5 grid gap-5 lg:grid-cols-2">
         {MORE_PROJECTS.map((project) => (
           <RevealItem key={project.slug} className="h-full">
             <CompactProjectCard project={project} />

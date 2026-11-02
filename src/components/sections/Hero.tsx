@@ -5,15 +5,13 @@ import { HeroPortrait } from '../hero/HeroPortrait'
 import { StatusCard } from './StatusCard'
 import { Button } from '../ui/Button'
 import { FULL_NAME } from '../../data/nav'
+import { PROFILE } from '../../data/profile'
 import { useSmoothScroll } from '../../lib/smooth-scroll-context'
 
-/** CONTENT-STRATEGY §2 — copy is verbatim; §2 supplies both eyebrow lengths. */
-const EYEBROW = 'Open to full-time roles & freelance projects — Semarang / open to relocate'
-const EYEBROW_SHORT = 'Open to opportunities — Semarang / open to relocate'
-/** §2 supporting headline, option C (the recommended one). */
-const POSITIONING = 'Full-stack developer building production systems for real businesses.'
-const SUBTEXT =
-  'Informatics graduate from Atma Jaya Yogyakarta with production experience shipping web and mobile apps end-to-end — most recently a garment-manufacturing tracking PWA used daily by 50-60 staff. I build with Laravel, Express.js, TypeScript, Go, React, Flutter, PostgreSQL, and Redis.'
+const EYEBROW = `${PROFILE.availability} / Semarang / open to relocate`
+const EYEBROW_SHORT = 'Open to opportunities / Semarang / open to relocate'
+const POSITIONING = PROFILE.positioning
+const SUBTEXT = PROFILE.summary
 
 /**
  * DESIGN-SYSTEM §4.7 — Name-Behind-Photo as a 1.3fr / 1fr asymmetric grid.
@@ -158,6 +156,7 @@ export function Hero() {
               <Button variant="outline" href="#contact" onClick={(e) => goTo(e, '#contact')}>
                 Get in Touch
               </Button>
+              <a href={PROFILE.cv} target="_blank" rel="noreferrer" className="inline-flex min-h-[44px] items-center rounded-btn px-2 text-body-sm text-platinum underline decoration-steel-light underline-offset-4">View CV (PDF)</a>
             </motion.div>
           </div>
         </div>

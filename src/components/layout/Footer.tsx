@@ -48,6 +48,7 @@ export function Footer() {
 
           <div className="flex flex-col gap-3">
             <h2 className="font-mono text-mono-xs uppercase text-steel-light">Elsewhere</h2>
+            <a href={CONTACT.github} className={LINK} target="_blank" rel="noreferrer noopener">GitHub</a>
             <a href={CONTACT.linkedin} target="_blank" rel="noreferrer noopener" className={LINK}>
               LinkedIn
             </a>

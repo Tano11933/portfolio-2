@@ -20,8 +20,8 @@ export default function App() {
         <Hero />
 
         <TrustBar />
-        <HowIWork />
         <FeaturedWork />
+        <HowIWork />
         <About />
         <Skills />
         <Contact />
