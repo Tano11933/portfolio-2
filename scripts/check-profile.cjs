@@ -80,7 +80,7 @@ function ratio(a,b){const lum=s=>s.match(/[\d.]+/g).slice(0,3).map(Number).map(x
     const markdown=await(await page.request.get('http://127.0.0.1:5185/index.md')).text()
     assert.ok(markdown.includes('Jun-Oct 2026') && markdown.includes('Team project: 3 members') && markdown.includes('Certified Secure Computer User v2'))
     assert.ok(!markdown.includes('558') && !markdown.includes('p95') && !markdown.includes('June 2026 to present'))
-    assert.ok((await(await page.request.get('http://127.0.0.1:5185/sitemap.xml')).text()).includes('2026-11-02'))
+    assert.ok((await(await page.request.get('http://127.0.0.1:5185/sitemap.xml')).text()).includes('https://gabrielgaetano.tech/'))
    }
    await page.close()
   }

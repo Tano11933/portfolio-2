@@ -12,6 +12,7 @@ const [{ PROFILE }, { FEATURED_PROJECTS, MORE_PROJECTS }, { SKILL_GROUPS }, { SE
   loadData('profile'), loadData('projects'), loadData('skills'), loadData('credentials'),
 ])
 const absolute = (path) => new URL(path, PROFILE.siteUrl).href
+await writeFile(new URL('../public/robots.txt', import.meta.url), `User-agent: *\nAllow: /\n\nSitemap: ${absolute('/sitemap.xml')}\n`)
 const lines = [
   `# ${PROFILE.name}`, '', `${PROFILE.role}. ${PROFILE.location}. Open to relocation.`, '',
   PROFILE.summary, '', `[View CV (PDF)](${absolute(PROFILE.cv)})`, '',

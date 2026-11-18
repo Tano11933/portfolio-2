@@ -4,7 +4,7 @@ Software Developer. Semarang, Indonesia. Open to relocation.
 
 Informatics graduate with freelance and internship experience. Built the backend of a production-tracking PWA used daily by 50-60 staff.
 
-[View CV (PDF)](https://gabrielgaetano-portfolio.pages.dev/cv/gabriel-gaetano-software-developer.pdf)
+[View CV (PDF)](https://gabrielgaetano.tech/cv/gabriel-gaetano-software-developer.pdf)
 
 Education: B.S. in Informatics (S.Kom.), Universitas Atma Jaya Yogyakarta, 2022-2026. GPA: 3.54/4.00.
 
@@ -45,7 +45,7 @@ Software Division, Yogyakarta, Indonesia
 
 ### EagleJeans
 
-[View project and screenshots](https://gabrielgaetano-portfolio.pages.dev/#eaglejeans)
+[View project and screenshots](https://gabrielgaetano.tech/#eaglejeans)
 
 Period: Jun-Oct 2026.
 
@@ -66,7 +66,7 @@ Used daily by 50-60 staff, processing approximately 60-100 production orders per
 
 ### ArthaBooks
 
-[View project and screenshots](https://gabrielgaetano-portfolio.pages.dev/#arthabooks)
+[View project and screenshots](https://gabrielgaetano.tech/#arthabooks)
 
 Period: Jun 2026.
 
@@ -87,7 +87,7 @@ Evaluated through UAT with 32 respondents across 10 SMEs, with a mean score of 4
 
 ### Melodia (Spotify Clone)
 
-[View project and screenshots](https://gabrielgaetano-portfolio.pages.dev/#spotify-clone)
+[View project and screenshots](https://gabrielgaetano.tech/#spotify-clone)
 
 Period: 2026-present.
 
@@ -114,7 +114,7 @@ Continuing work on the Go API and React interface. The application is a personal
 
 ### ReuseMart
 
-[View project and screenshots](https://gabrielgaetano-portfolio.pages.dev/#reusemart)
+[View project and screenshots](https://gabrielgaetano.tech/#reusemart)
 
 Period: May 2025.
 
@@ -135,7 +135,7 @@ Contributions across transactions, reporting and mobile delivery workflows in a 
 
 ### Padukuhan Tritis
 
-[View project and screenshots](https://gabrielgaetano-portfolio.pages.dev/#padukuhan-tritis)
+[View project and screenshots](https://gabrielgaetano.tech/#padukuhan-tritis)
 
 Period: Jul 2025.
 
@@ -157,7 +157,7 @@ Responsive interfaces for a public, non-technical audience.
 
 ### BookHive
 
-[View project and screenshots](https://gabrielgaetano-portfolio.pages.dev/#bookhive)
+[View project and screenshots](https://gabrielgaetano.tech/#bookhive)
 
 A library web application for borrowing, donations and room reservations.
 
@@ -173,7 +173,7 @@ Library administration and member workflows.
 
 ### T2KAV Gym
 
-[View project and screenshots](https://gabrielgaetano-portfolio.pages.dev/#t2kav-gym)
+[View project and screenshots](https://gabrielgaetano.tech/#t2kav-gym)
 
 A mobile application for browsing gym services and booking classes or trainers.
 
@@ -191,14 +191,14 @@ Mobile service browsing and booking workflows.
 
 - JavaScript Developer Certification. freeCodeCamp, Aug 2026. Certification.
   - [Verification](https://freecodecamp.org/certification/gabrielgaetano/javascript-v9)
-  - [Certificate PDF](https://gabrielgaetano-portfolio.pages.dev/credentials/javascript-developer-2026.pdf)
+  - [Certificate PDF](https://gabrielgaetano.tech/credentials/javascript-developer-2026.pdf)
 - Certified Secure Computer User v2. EC-Council, Jun 2023. Certification.
-  - [Certificate PDF](https://gabrielgaetano-portfolio.pages.dev/credentials/secure-computer-user-2023.pdf)
+  - [Certificate PDF](https://gabrielgaetano.tech/credentials/secure-computer-user-2023.pdf)
 - PHP with MySQL: Build 5 PHP and MySQL Projects. Udemy, Dec 2025. Course completion.
-  - [Certificate PDF](https://gabrielgaetano-portfolio.pages.dev/credentials/php-mysql-2025.pdf)
+  - [Certificate PDF](https://gabrielgaetano.tech/credentials/php-mysql-2025.pdf)
 - Belajar Dasar AI. Dicoding, Dec 2025. Course completion.
   - [Verification](https://www.dicoding.com/certificates/72ZDK6ONVPYW)
-  - [Certificate PDF](https://gabrielgaetano-portfolio.pages.dev/credentials/ai-foundations-2025.pdf)
+  - [Certificate PDF](https://gabrielgaetano.tech/credentials/ai-foundations-2025.pdf)
 - Prompt Engineering Certification: Master AI. Udemy, Dec 2025. Course completion.
 - Intro to Full Stack Web Development Free Course. Purwadhika, Dec 2025. Course completion.
   - [Verification](https://purwadhika.com/verify-certificate/PWDK-ITFSWDFC-251206-0000006)

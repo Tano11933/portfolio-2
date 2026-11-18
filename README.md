@@ -2,7 +2,7 @@
 
 Website portfolio pribadi **Gabriel Gaetano Onen Baskara** — Software Developer dengan pengalaman freelance dan internship. Satu halaman, dibangun dengan **React 19 + TypeScript + Vite** dan **Tailwind CSS v4**.
 
-🔗 **Live:** <https://gabrielgaetano-portfolio.pages.dev/>
+🔗 **Live:** <https://gabrielgaetano.tech/>
 
 ![Preview](public/og-image.webp)
 
@@ -138,7 +138,7 @@ Keputusan produk & desain tidak berhenti di kode:
 
 ## 📬 Kontak
 
-- Website: <https://gabrielgaetano-portfolio.pages.dev/>
+- Website: <https://gabrielgaetano.tech/>
 - LinkedIn: <https://www.linkedin.com/in/gabriel-gaetano-onen-baskara/>
 - GitHub: <https://github.com/Tano11933>
 

@@ -6,9 +6,9 @@ Informatics graduate with freelance and internship experience. Built the backend
 
 ## Portfolio
 
-- [Profile and project summaries](https://gabrielgaetano-portfolio.pages.dev/index.md): Experience, contributions, skills, credentials and contact details in Markdown.
-- [Visual portfolio](https://gabrielgaetano-portfolio.pages.dev/): Selected work and project screenshots.
-- [CV](https://gabrielgaetano-portfolio.pages.dev/cv/gabriel-gaetano-software-developer.pdf): Software Developer CV in PDF.
+- [Profile and project summaries](https://gabrielgaetano.tech/index.md): Experience, contributions, skills, credentials and contact details in Markdown.
+- [Visual portfolio](https://gabrielgaetano.tech/): Selected work and project screenshots.
+- [CV](https://gabrielgaetano.tech/cv/gabriel-gaetano-software-developer.pdf): Software Developer CV in PDF.
 
 ## Professional profiles
 

@@ -23,11 +23,12 @@ export default defineConfig({
             knowsAbout: PROFILE.focus, sameAs: [PROFILE.contact.linkedin, PROFILE.contact.github],
           }
           const website = {
-            '@context': 'https://schema.org', '@type': 'WebSite', name: `${PROFILE.shortName} Portfolio`,
+            '@context': 'https://schema.org', '@type': 'WebSite', name: PROFILE.shortName,
+            alternateName: [`${PROFILE.shortName} Portfolio`, PROFILE.name],
             url: PROFILE.siteUrl, inLanguage: 'en', author: { '@type': 'Person', name: PROFILE.name },
           }
           const fields: Record<string, string> = {
-            TITLE: `${PROFILE.name} | ${PROFILE.role}`, NAME: PROFILE.name, ROLE: PROFILE.role,
+            TITLE: `${PROFILE.name} | ${PROFILE.role}`, NAME: PROFILE.name, SITE_NAME: PROFILE.shortName, ROLE: PROFILE.role,
             URL: PROFILE.siteUrl, DESCRIPTION: PROFILE.description, SUMMARY: PROFILE.summary,
             EMAIL: PROFILE.contact.email, CV: PROFILE.cv,
           }

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gabrielgaetano-portfolio.pages.dev/sitemap.xml
+Sitemap: https://gabrielgaetano.tech/sitemap.xml
